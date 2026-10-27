@@ -719,8 +719,8 @@ export default function App() {
                       <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                       <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate">Review Date</span>
                     </div>
-                    <div className="text-xs sm:text-base lg:text-lg font-bold text-white truncate">Q4 2026 • v2.4</div>
-                    <div className="text-[10px] sm:text-xs lg:text-sm text-slate-400 truncate">Field Pilot Ready</div>
+                    <div className="text-xs sm:text-base lg:text-lg font-bold text-white truncate">29/10/2026</div>
+                    <div className="text-[10px] sm:text-xs lg:text-sm text-slate-400 truncate">v2.4 • Field Pilot Ready</div>
                   </div>
                 </div>
 
