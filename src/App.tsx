@@ -705,10 +705,10 @@ export default function App() {
                     isDark ? 'bg-[#0B1221]/80 border-white/10 hover:border-blue-400/40' : 'bg-white/80 border-slate-200 shadow-sm'
                   }`}>
                     <div className="flex items-center gap-1.5 text-blue-400 mb-1">
-                      <Building2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                      <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate">Organization</span>
+                      <Headphones className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                      <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate">Team</span>
                     </div>
-                    <div className="text-xs sm:text-base lg:text-lg font-bold text-white truncate">Sri Lanka Telecom PLC</div>
+                    <div className="text-xs sm:text-base lg:text-lg font-bold text-white truncate">Contact Center Colombo</div>
                     <div className="text-[10px] sm:text-xs lg:text-sm text-slate-400 truncate">1212 / 1717 Centers</div>
                   </div>
 
