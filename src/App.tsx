@@ -622,8 +622,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* MAIN CONTENT AREA (FLUID FIT & AUTO-SCROLL ON SMALL SCREENS) */}
-      <main className="relative z-10 flex-1 min-h-0 w-full flex flex-col items-center justify-start sm:justify-center p-3 sm:p-5 md:p-6 lg:p-8 overflow-y-auto overflow-x-hidden max-w-7xl mx-auto">
+      {/* MAIN CONTENT AREA (STRICT ZERO SCROLL - 100% VIEWPORT FIT) */}
+      <main className="relative z-10 flex-1 min-h-0 w-full flex flex-col items-center justify-center p-2 sm:p-4 lg:p-6 overflow-hidden max-w-7xl mx-auto">
         <AnimatePresence mode="wait">
           {/* SLIDE 1: TITLE & INTRODUCTION (WITH ANIMATED ROBOT CORE) */}
           {currentSlide === 1 && (
@@ -633,37 +633,26 @@ export default function App() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.02 }}
               transition={{ duration: 0.4 }}
-              className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center my-auto py-2"
+              className="w-full h-full max-h-full grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-8 items-center justify-center overflow-hidden my-auto py-1"
             >
               {/* LEFT COLUMN: TITLE, PRESENTERS, AND HIGHLIGHTS */}
-              <div className="lg:col-span-7 flex flex-col justify-center text-left order-2 lg:order-1">
+              <div className="lg:col-span-7 flex flex-col justify-center text-left order-2 lg:order-1 overflow-hidden">
                 {/* Glowing Shimmer Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[#00F0FF] text-[11px] sm:text-xs font-bold tracking-widest uppercase mb-4 sm:mb-6 shadow-[0_0_25px_rgba(0,240,255,0.15)] relative overflow-hidden group w-fit">
+                <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-[#00F0FF] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-2 sm:mb-4 shadow-[0_0_20px_rgba(0,240,255,0.15)] relative overflow-hidden group w-fit">
                   <motion.div 
                     animate={{ x: ["-100%", "200%"] }} 
                     transition={{ repeat: Infinity, duration: 2.2, ease: "linear", delay: 0.5 }}
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-[#00F0FF]/25 to-transparent skew-x-12" 
                   />
-                  <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse shrink-0" />
+                  <Sparkles className="w-3 h-3 text-cyan-400 animate-pulse shrink-0" />
                   <span className="relative z-10">Enterprise AI Contact Center • Phase 2</span>
-                  <div className="w-2 h-2 rounded-full bg-cyan-400 animate-ping shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping shrink-0" />
                 </div>
 
                 {/* Main Heading with Glowing Effect & Background Rings */}
-                <div className="relative mb-4 sm:mb-6">
-                  <motion.div 
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-                    className="absolute -left-6 -top-6 sm:-left-10 sm:-top-10 w-24 h-24 sm:w-32 sm:h-32 border border-cyan-500/15 rounded-full border-t-cyan-400/40 pointer-events-none" 
-                  />
-                  <motion.div 
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-                    className="absolute -left-3 -top-3 sm:-left-5 sm:-top-5 w-16 h-16 sm:w-20 sm:h-20 border border-blue-500/15 border-dashed rounded-full border-b-blue-400/40 pointer-events-none" 
-                  />
-
-                  <h1 className="text-3xl sm:text-5xl xl:text-6xl font-black tracking-tight leading-[1.1] relative z-10">
-                    <span className="text-slate-400 text-base sm:text-2xl font-bold tracking-normal block mb-1">
+                <div className="relative mb-2 sm:mb-4">
+                  <h1 className="text-2xl sm:text-4xl xl:text-5xl font-black tracking-tight leading-[1.1] relative z-10">
+                    <span className="text-slate-400 text-xs sm:text-lg font-bold tracking-normal block mb-0.5">
                       Progress Review Presentation
                     </span>
                     SLT{" "}
@@ -671,9 +660,9 @@ export default function App() {
                       <motion.span 
                         animate={{ opacity: [0.5, 0.85, 0.5], scale: [1, 1.05, 1] }}
                         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 blur-[35px] sm:blur-[45px] mix-blend-screen"
+                        className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 blur-[30px] sm:blur-[40px] mix-blend-screen"
                       />
-                      <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-[#00F0FF] to-blue-400 drop-shadow-[0_0_25px_rgba(0,240,255,0.55)]">
+                      <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-[#00F0FF] to-blue-400 drop-shadow-[0_0_20px_rgba(0,240,255,0.55)]">
                         Smart PEARL
                       </span>
                     </span>
@@ -684,79 +673,79 @@ export default function App() {
                     initial={{ scaleX: 0, opacity: 0 }} 
                     animate={{ scaleX: 1, opacity: 1 }}
                     transition={{ duration: 1.2, ease: "circOut", delay: 0.3 }}
-                    className="h-[2px] w-48 sm:w-64 bg-gradient-to-r from-[#00F0FF] via-blue-500 to-transparent mt-3 sm:mt-4 origin-left relative flex items-center"
+                    className="h-[2px] w-40 sm:w-56 bg-gradient-to-r from-[#00F0FF] via-blue-500 to-transparent mt-2 sm:mt-3 origin-left relative flex items-center"
                   >
-                    <div className="absolute right-0 w-6 sm:w-8 h-[2px] bg-white animate-pulse shadow-[0_0_10px_#fff]" />
-                    <span className="absolute left-0 -bottom-4 sm:-bottom-5 text-[9px] sm:text-[10px] text-cyan-400/80 font-mono tracking-widest uppercase truncate max-w-full">
+                    <div className="absolute right-0 w-5 sm:w-6 h-[2px] bg-white animate-pulse shadow-[0_0_10px_#fff]" />
+                    <span className="absolute left-0 -bottom-3.5 sm:-bottom-4 text-[8px] sm:text-[9px] text-cyan-400/80 font-mono tracking-widest uppercase truncate max-w-full">
                       Neural Copilot • Sub-Second Retrieval • Voice Triage
                     </span>
                   </motion.div>
                 </div>
 
                 {/* Subtitle / Description */}
-                <p className="text-xs sm:text-base text-slate-300 leading-relaxed mb-4 sm:mb-6 font-normal max-w-xl">
+                <p className="text-xs sm:text-sm lg:text-base text-slate-300 leading-relaxed mb-2 sm:mb-4 font-normal max-w-xl line-clamp-2 sm:line-clamp-none">
                   Next-generation contact center copilot empowering SLT 1212 & 1717 agents with trilingual speech intelligence, instant directory lookups, automated trouble ticketing, and official SLT QA scoring.
                 </p>
 
                 {/* Presenter / Team Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-4 sm:mb-6 max-w-xl">
-                  <div className={`p-3 sm:p-3.5 rounded-xl border text-left backdrop-blur-md ${
+                <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-2 sm:mb-4 max-w-xl">
+                  <div className={`p-2 sm:p-3 rounded-xl border text-left backdrop-blur-md ${
                     isDark ? 'bg-[#0B1221]/80 border-white/10' : 'bg-white/80 border-slate-200 shadow-sm'
                   }`}>
-                    <div className="flex items-center gap-1.5 text-cyan-400 mb-1">
-                      <Users className="w-3.5 h-3.5 shrink-0" />
-                      <span className="text-[10px] font-bold uppercase tracking-wider">Project Lead</span>
+                    <div className="flex items-center gap-1 text-cyan-400 mb-0.5">
+                      <Users className="w-3 h-3 shrink-0" />
+                      <span className="text-[9px] font-bold uppercase tracking-wider truncate">Project Lead</span>
                     </div>
                     <div className="text-xs sm:text-sm font-bold text-white truncate">Kudagama & Dev Squad</div>
-                    <div className="text-[10px] sm:text-[11px] text-slate-400">Lead AI Architects</div>
+                    <div className="text-[9px] sm:text-[10px] text-slate-400 truncate">Lead AI Architects</div>
                   </div>
 
-                  <div className={`p-3 sm:p-3.5 rounded-xl border text-left backdrop-blur-md ${
+                  <div className={`p-2 sm:p-3 rounded-xl border text-left backdrop-blur-md ${
                     isDark ? 'bg-[#0B1221]/80 border-white/10' : 'bg-white/80 border-slate-200 shadow-sm'
                   }`}>
-                    <div className="flex items-center gap-1.5 text-blue-400 mb-1">
-                      <Building2 className="w-3.5 h-3.5 shrink-0" />
-                      <span className="text-[10px] font-bold uppercase tracking-wider">Organization</span>
+                    <div className="flex items-center gap-1 text-blue-400 mb-0.5">
+                      <Building2 className="w-3 h-3 shrink-0" />
+                      <span className="text-[9px] font-bold uppercase tracking-wider truncate">Organization</span>
                     </div>
                     <div className="text-xs sm:text-sm font-bold text-white truncate">Sri Lanka Telecom PLC</div>
-                    <div className="text-[10px] sm:text-[11px] text-slate-400">1212 / 1717 Centers</div>
+                    <div className="text-[9px] sm:text-[10px] text-slate-400 truncate">1212 / 1717 Centers</div>
                   </div>
 
-                  <div className={`p-3 sm:p-3.5 rounded-xl border text-left backdrop-blur-md ${
+                  <div className={`p-2 sm:p-3 rounded-xl border text-left backdrop-blur-md ${
                     isDark ? 'bg-[#0B1221]/80 border-white/10' : 'bg-white/80 border-slate-200 shadow-sm'
                   }`}>
-                    <div className="flex items-center gap-1.5 text-emerald-400 mb-1">
-                      <Calendar className="w-3.5 h-3.5 shrink-0" />
-                      <span className="text-[10px] font-bold uppercase tracking-wider">Review Date</span>
+                    <div className="flex items-center gap-1 text-emerald-400 mb-0.5">
+                      <Calendar className="w-3 h-3 shrink-0" />
+                      <span className="text-[9px] font-bold uppercase tracking-wider truncate">Review Date</span>
                     </div>
-                    <div className="text-xs sm:text-sm font-bold text-white truncate">Q4 2026 • v2.4 Beta</div>
-                    <div className="text-[10px] sm:text-[11px] text-slate-400">Field Pilot Ready</div>
+                    <div className="text-xs sm:text-sm font-bold text-white truncate">Q4 2026 • v2.4</div>
+                    <div className="text-[9px] sm:text-[10px] text-slate-400 truncate">Field Pilot Ready</div>
                   </div>
                 </div>
 
                 {/* System Capabilities Pills */}
                 <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                  <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] sm:text-[11px] font-semibold text-slate-300">
-                    <Zap className="w-3 h-3 text-cyan-400 shrink-0" />
+                  <div className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-white/5 border border-white/10 text-[9px] sm:text-[10px] font-semibold text-slate-300">
+                    <Zap className="w-2.5 h-2.5 text-cyan-400 shrink-0" />
                     <span>Sub-0.5s Retrieval</span>
                   </div>
-                  <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] sm:text-[11px] font-semibold text-slate-300">
-                    <Globe className="w-3 h-3 text-blue-400 shrink-0" />
+                  <div className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-white/5 border border-white/10 text-[9px] sm:text-[10px] font-semibold text-slate-300">
+                    <Globe className="w-2.5 h-2.5 text-blue-400 shrink-0" />
                     <span>Trilingual STT</span>
                   </div>
-                  <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] sm:text-[11px] font-semibold text-slate-300">
-                    <ShieldCheck className="w-3 h-3 text-emerald-400 shrink-0" />
+                  <div className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-white/5 border border-white/10 text-[9px] sm:text-[10px] font-semibold text-slate-300">
+                    <ShieldCheck className="w-2.5 h-2.5 text-emerald-400 shrink-0" />
                     <span>Official SLT QA</span>
                   </div>
-                  <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] sm:text-[11px] font-semibold text-slate-300">
-                    <Server className="w-3 h-3 text-purple-400 shrink-0" />
+                  <div className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-white/5 border border-white/10 text-[9px] sm:text-[10px] font-semibold text-slate-300">
+                    <Server className="w-2.5 h-2.5 text-purple-400 shrink-0" />
                     <span>Auto Trouble Ticket</span>
                   </div>
                 </div>
               </div>
 
               {/* RIGHT COLUMN: 3D GLOWING AI CORE & ROBOT WITH ORBITAL ANIMATIONS */}
-              <div className="lg:col-span-5 flex justify-center items-center relative h-[220px] sm:h-[300px] md:h-[380px] lg:h-[460px] xl:h-[500px] order-1 lg:order-2">
+              <div className="lg:col-span-5 flex justify-center items-center relative h-[140px] sm:h-[200px] md:h-[260px] lg:h-[340px] xl:h-[380px] order-1 lg:order-2 overflow-hidden">
                 <motion.div 
                   initial={{ scale: 0.7, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -767,22 +756,22 @@ export default function App() {
                   <motion.div 
                     animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
                     transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute inset-0 bg-gradient-to-tr from-[#00F0FF]/30 via-blue-600/20 to-purple-600/30 rounded-full blur-[60px] sm:blur-[80px]"
+                    className="absolute inset-0 bg-gradient-to-tr from-[#00F0FF]/30 via-blue-600/20 to-purple-600/30 rounded-full blur-[45px] sm:blur-[65px]"
                   />
 
                   {/* Rotating Orbital Rings */}
                   <div className="absolute inset-2 sm:inset-4 md:inset-6 rounded-full border border-cyan-400/50 border-dashed animate-[spin_20s_linear_infinite]" />
-                  <div className="absolute inset-6 sm:inset-10 md:inset-14 rounded-full border-2 border-blue-400/40 border-dotted animate-[spin_15s_linear_infinite_reverse]" />
+                  <div className="absolute inset-5 sm:inset-9 md:inset-12 rounded-full border-2 border-blue-400/40 border-dotted animate-[spin_15s_linear_infinite_reverse]" />
                   <div 
-                    className="absolute inset-10 sm:inset-16 md:inset-22 rounded-full border border-purple-500/30 animate-[spin_25s_linear_infinite]" 
+                    className="absolute inset-8 sm:inset-14 md:inset-18 rounded-full border border-purple-500/30 animate-[spin_25s_linear_infinite]" 
                     style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }} 
                   />
 
                   {/* Full Robot Container with Bobbing Motion */}
                   <motion.div 
-                    animate={{ y: [-10, 10, -10] }}
+                    animate={{ y: [-8, 8, -8] }}
                     transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="relative w-full max-w-[200px] sm:max-w-[280px] md:max-w-[340px] lg:max-w-[400px] aspect-square flex flex-col items-center justify-center z-10 drop-shadow-[0_0_40px_rgba(0,240,255,0.4)]"
+                    className="relative w-full max-w-[130px] sm:max-w-[180px] md:max-w-[240px] lg:max-w-[290px] aspect-square flex flex-col items-center justify-center z-10 drop-shadow-[0_0_30px_rgba(0,240,255,0.4)]"
                   >
                     {/* Rotating Orbiting Icons */}
                     <motion.div 
@@ -793,30 +782,30 @@ export default function App() {
                       <motion.div 
                         animate={{ rotate: -360 }} 
                         transition={{ duration: 25, repeat: Infinity, ease: "linear" }} 
-                        className="absolute top-[5%] left-[50%] -translate-x-1/2 -translate-y-1/2 p-1.5 sm:p-2.5 rounded-full bg-black/60 border border-cyan-400/50 backdrop-blur-md shadow-[0_0_15px_rgba(0,240,255,0.6)] flex items-center justify-center"
+                        className="absolute top-[5%] left-[50%] -translate-x-1/2 -translate-y-1/2 p-1 sm:p-2 rounded-full bg-black/60 border border-cyan-400/50 backdrop-blur-md shadow-[0_0_10px_rgba(0,240,255,0.6)] flex items-center justify-center"
                       >
-                        <Brain className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-cyan-300" />
+                        <Brain className="w-3 h-3 sm:w-4 sm:h-4 text-cyan-300" />
                       </motion.div>
                       <motion.div 
                         animate={{ rotate: -360 }} 
                         transition={{ duration: 25, repeat: Infinity, ease: "linear" }} 
-                        className="absolute top-[50%] right-[5%] translate-x-1/2 -translate-y-1/2 p-1.5 sm:p-2.5 rounded-full bg-black/60 border border-blue-500/50 backdrop-blur-md shadow-[0_0_15px_rgba(59,130,246,0.6)] flex items-center justify-center"
+                        className="absolute top-[50%] right-[5%] translate-x-1/2 -translate-y-1/2 p-1 sm:p-2 rounded-full bg-black/60 border border-blue-500/50 backdrop-blur-md shadow-[0_0_10px_rgba(59,130,246,0.6)] flex items-center justify-center"
                       >
-                        <Shield className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-blue-400" />
+                        <Shield className="w-3 h-3 sm:w-4 sm:h-4 text-blue-400" />
                       </motion.div>
                       <motion.div 
                         animate={{ rotate: -360 }} 
                         transition={{ duration: 25, repeat: Infinity, ease: "linear" }} 
-                        className="absolute bottom-[5%] left-[50%] -translate-x-1/2 translate-y-1/2 p-1.5 sm:p-2.5 rounded-full bg-black/60 border border-purple-500/50 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.6)] flex items-center justify-center"
+                        className="absolute bottom-[5%] left-[50%] -translate-x-1/2 translate-y-1/2 p-1 sm:p-2 rounded-full bg-black/60 border border-purple-500/50 backdrop-blur-md shadow-[0_0_10px_rgba(168,85,247,0.6)] flex items-center justify-center"
                       >
-                        <MessageSquare className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-purple-400" />
+                        <MessageSquare className="w-3 h-3 sm:w-4 sm:h-4 text-purple-400" />
                       </motion.div>
                       <motion.div 
                         animate={{ rotate: -360 }} 
                         transition={{ duration: 25, repeat: Infinity, ease: "linear" }} 
-                        className="absolute top-[50%] left-[5%] -translate-x-1/2 -translate-y-1/2 p-1.5 sm:p-2.5 rounded-full bg-black/60 border border-rose-500/50 backdrop-blur-md shadow-[0_0_15px_rgba(244,63,94,0.6)] flex items-center justify-center"
+                        className="absolute top-[50%] left-[5%] -translate-x-1/2 -translate-y-1/2 p-1 sm:p-2 rounded-full bg-black/60 border border-rose-500/50 backdrop-blur-md shadow-[0_0_10px_rgba(244,63,94,0.6)] flex items-center justify-center"
                       >
-                        <Zap className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-rose-400" />
+                        <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-rose-400" />
                       </motion.div>
                     </motion.div>
 
@@ -824,7 +813,7 @@ export default function App() {
                     <img 
                       src="/robot.png" 
                       alt="Smart PEARL Robot" 
-                      className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]" 
+                      className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" 
                     />
                   </motion.div>
                   
@@ -833,13 +822,13 @@ export default function App() {
                     <motion.div
                       key={i}
                       animate={{ 
-                        y: [0, -50 - (i * 12)], 
-                        x: [(i % 2 === 0 ? 1 : -1) * (15 + i * 10), (i % 2 === 0 ? -1 : 1) * (30 + i * 8)],
+                        y: [0, -35 - (i * 7)], 
+                        x: [(i % 2 === 0 ? 1 : -1) * (8 + i * 6), (i % 2 === 0 ? -1 : 1) * (16 + i * 5)],
                         opacity: [0, 1, 0],
                         scale: [0, 1.2, 0]
                       }}
                       transition={{ duration: 2.5 + i * 0.4, repeat: Infinity, delay: i * 0.6 }}
-                      className="absolute w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(0,240,255,1)] pointer-events-none"
+                      className="absolute w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(0,240,255,1)] pointer-events-none"
                     />
                   ))}
                 </motion.div>
@@ -851,56 +840,56 @@ export default function App() {
           {currentSlide === 2 && (
             <motion.div
               key="slide-2"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="w-full flex flex-col gap-4 sm:gap-6 my-auto"
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35 }}
+              className="w-full h-full max-h-full flex flex-col justify-between overflow-hidden py-1"
             >
               {/* Header & Section Switcher */}
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 shrink-0 mb-2">
                 <div>
-                  <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400 mb-0.5 sm:mb-1">
+                  <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">
                     Slide 02 • Executive Summary & Scope
                   </div>
-                  <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+                  <h2 className="text-lg sm:text-2xl lg:text-3xl font-black tracking-tight">
                     Project Overview & Key Stakeholders
                   </h2>
                 </div>
 
                 {/* In-Slide Section Tabs */}
-                <div className="w-full sm:w-auto flex items-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 rounded-2xl bg-white/5 border border-white/10 self-start lg:self-auto overflow-x-auto scrollbar-none">
+                <div className="flex items-center gap-1.5 p-1 rounded-xl bg-white/5 border border-white/10 shrink-0 self-start sm:self-auto overflow-x-auto scrollbar-none">
                   <button
                     onClick={() => setSlide2Tab('problem')}
-                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${
+                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
                       slide2Tab === 'problem'
-                        ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/30'
+                        ? 'bg-rose-500 text-white shadow-md shadow-rose-500/30'
                         : 'text-slate-400 hover:text-white'
                     }`}
                   >
-                    <AlertTriangle className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
                     <span>01. The Problem</span>
                   </button>
                   <button
                     onClick={() => setSlide2Tab('solution')}
-                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${
+                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
                       slide2Tab === 'solution'
-                        ? 'bg-cyan-500 text-slate-900 shadow-lg shadow-cyan-500/30'
+                        ? 'bg-cyan-500 text-slate-900 shadow-md shadow-cyan-500/30'
                         : 'text-slate-400 hover:text-white'
                     }`}
                   >
-                    <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    <Zap className="w-3.5 h-3.5 shrink-0" />
                     <span>02. The Solution</span>
                   </button>
                   <button
                     onClick={() => setSlide2Tab('stakeholders')}
-                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${
+                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
                       slide2Tab === 'stakeholders'
-                        ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/30'
+                        ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md shadow-blue-500/30'
                         : 'text-slate-400 hover:text-white'
                     }`}
                   >
-                    <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    <Users className="w-3.5 h-3.5 shrink-0" />
                     <span>03. Stakeholders</span>
                   </button>
                 </div>
@@ -913,66 +902,66 @@ export default function App() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
-                  className={`p-4 sm:p-6 lg:p-10 rounded-2xl sm:rounded-3xl border backdrop-blur-2xl relative overflow-hidden ${
+                  className={`flex-1 min-h-0 flex flex-col justify-between p-3 sm:p-5 rounded-2xl border backdrop-blur-2xl relative overflow-hidden ${
                     isDark ? 'bg-rose-950/20 border-rose-500/30' : 'bg-rose-50 border-rose-200'
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-4 sm:mb-8">
-                    <div className="flex items-center gap-2.5 sm:gap-3">
-                      <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-rose-500/20 text-rose-400 border border-rose-500/30 shrink-0">
-                        <AlertTriangle className="w-6 h-6 sm:w-8 sm:h-8" />
+                  <div className="flex items-center justify-between shrink-0 mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="p-1.5 sm:p-2 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30 shrink-0">
+                        <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
                       <div>
-                        <span className="text-[10px] sm:text-xs font-bold text-rose-400 uppercase tracking-widest">Pain Point Analysis</span>
-                        <h3 className="text-lg sm:text-2xl lg:text-3xl font-black text-white">Legacy Contact Center Bottlenecks</h3>
+                        <span className="text-[9px] sm:text-[10px] font-bold text-rose-400 uppercase tracking-widest">Pain Point Analysis</span>
+                        <h3 className="text-sm sm:text-lg font-black text-white">Legacy Contact Center Bottlenecks</h3>
                       </div>
                     </div>
                     <button
                       onClick={() => setSlide2Tab('solution')}
-                      className="hidden sm:flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-xs font-bold hover:bg-cyan-500/30 transition-all cursor-pointer shrink-0"
+                      className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-lg bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-xs font-bold hover:bg-cyan-500/30 transition-all cursor-pointer shrink-0"
                     >
                       <span>View Solution</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6">
-                    <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:border-rose-500/40 transition-all">
-                      <div className="text-rose-400 font-black text-base sm:text-lg lg:text-xl mb-1.5 sm:mb-2 flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 flex-1 min-h-0">
+                    <div className="p-2.5 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-center">
+                      <div className="text-rose-400 font-black text-xs sm:text-sm lg:text-base mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-rose-400 shrink-0" />
                         4.2 Min Average Handling Time (AHT)
                       </div>
-                      <p className="text-xs sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal">
+                      <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-relaxed font-normal">
                         Call center agents waste up to 45 seconds per call manually hunting through static PDFs, intranet portals, and fragmented spreadsheets while customers wait on hold.
                       </p>
                     </div>
 
-                    <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:border-rose-500/40 transition-all">
-                      <div className="text-rose-400 font-black text-base sm:text-lg lg:text-xl mb-1.5 sm:mb-2 flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0" />
+                    <div className="p-2.5 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-center">
+                      <div className="text-rose-400 font-black text-xs sm:text-sm lg:text-base mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-rose-400 shrink-0" />
                         Singlish & Dialect Acoustic Loss
                       </div>
-                      <p className="text-xs sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal">
+                      <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-relaxed font-normal">
                         Sri Lankan accented English and mixed Singlish phrases like <em>"Router eke PON light off wela"</em> are misunderstood by standard speech engines, forcing repeated clarification.
                       </p>
                     </div>
 
-                    <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:border-rose-500/40 transition-all">
-                      <div className="text-rose-400 font-black text-base sm:text-lg lg:text-xl mb-1.5 sm:mb-2 flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0" />
+                    <div className="p-2.5 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-center">
+                      <div className="text-rose-400 font-black text-xs sm:text-sm lg:text-base mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-rose-400 shrink-0" />
                         Manual Trouble Ticket Misclassification
                       </div>
-                      <p className="text-xs sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal">
+                      <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-relaxed font-normal">
                         Fiber Voice and broadband speed faults are frequently misdirected between Main Distribution Frame (MDF) and Area Maintenance, causing up to 48-hour resolution delays.
                       </p>
                     </div>
 
-                    <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:border-rose-500/40 transition-all">
-                      <div className="text-rose-400 font-black text-base sm:text-lg lg:text-xl mb-1.5 sm:mb-2 flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0" />
+                    <div className="p-2.5 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-center">
+                      <div className="text-rose-400 font-black text-xs sm:text-sm lg:text-base mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-rose-400 shrink-0" />
                         Only 2% Quality Audit Sampling
                       </div>
-                      <p className="text-xs sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal">
+                      <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-relaxed font-normal">
                         Manual QA inspectors sample only 2-3 calls per agent per month, creating huge compliance blindspots on mandatory greetings, 45s hold thresholds, and IVR C-Sat closing.
                       </p>
                     </div>
@@ -987,66 +976,66 @@ export default function App() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
-                  className={`p-4 sm:p-6 lg:p-10 rounded-2xl sm:rounded-3xl border backdrop-blur-2xl relative overflow-hidden ${
+                  className={`flex-1 min-h-0 flex flex-col justify-between p-3 sm:p-5 rounded-2xl border backdrop-blur-2xl relative overflow-hidden ${
                     isDark ? 'bg-cyan-950/20 border-cyan-500/30' : 'bg-cyan-50 border-cyan-200'
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-4 sm:mb-8">
-                    <div className="flex items-center gap-2.5 sm:gap-3">
-                      <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-cyan-500/20 text-[#00F0FF] border border-cyan-500/30 shrink-0">
-                        <Zap className="w-6 h-6 sm:w-8 sm:h-8" />
+                  <div className="flex items-center justify-between shrink-0 mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="p-1.5 sm:p-2 rounded-xl bg-cyan-500/20 text-[#00F0FF] border border-cyan-500/30 shrink-0">
+                        <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
                       <div>
-                        <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest">Architectural Innovation</span>
-                        <h3 className="text-lg sm:text-2xl lg:text-3xl font-black text-white">The Smart PEARL AI Solution</h3>
+                        <span className="text-[9px] sm:text-[10px] font-bold text-cyan-400 uppercase tracking-widest">Architectural Innovation</span>
+                        <h3 className="text-sm sm:text-lg font-black text-white">The Smart PEARL AI Solution</h3>
                       </div>
                     </div>
                     <button
                       onClick={() => setSlide2Tab('stakeholders')}
-                      className="hidden sm:flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-blue-500/20 border border-blue-400/40 text-blue-300 text-xs font-bold hover:bg-blue-500/30 transition-all cursor-pointer shrink-0"
+                      className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-lg bg-blue-500/20 border border-blue-400/40 text-blue-300 text-xs font-bold hover:bg-blue-500/30 transition-all cursor-pointer shrink-0"
                     >
                       <span>View Stakeholders</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6">
-                    <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/40 transition-all">
-                      <div className="text-[#00F0FF] font-black text-base sm:text-lg lg:text-xl mb-1.5 sm:mb-2 flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 flex-1 min-h-0">
+                    <div className="p-2.5 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-center">
+                      <div className="text-[#00F0FF] font-black text-xs sm:text-sm lg:text-base mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-cyan-400 shrink-0" />
                         Sub-0.5s Semantic Retrieval
                       </div>
-                      <p className="text-xs sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal">
+                      <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-relaxed font-normal">
                         Over 28,500+ internal directory records, departments, and regional offices vectorized into high-speed memory for instantaneous zero-hold lookup in Sinhala, English, and Tamil.
                       </p>
                     </div>
 
-                    <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/40 transition-all">
-                      <div className="text-[#00F0FF] font-black text-base sm:text-lg lg:text-xl mb-1.5 sm:mb-2 flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0" />
+                    <div className="p-2.5 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-center">
+                      <div className="text-[#00F0FF] font-black text-xs sm:text-sm lg:text-base mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-cyan-400 shrink-0" />
                         Telecom Voice Phonetic Normalizer
                       </div>
-                      <p className="text-xs sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal">
+                      <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-relaxed font-normal">
                         Proprietary phonetic rules instantly map verbal phrases into clean technical terms (e.g., <em>"LOS red light"</em> -&gt; Optical Fiber Cut, dispatch direct to Area-MTCE).
                       </p>
                     </div>
 
-                    <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/40 transition-all">
-                      <div className="text-[#00F0FF] font-black text-base sm:text-lg lg:text-xl mb-1.5 sm:mb-2 flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0" />
+                    <div className="p-2.5 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-center">
+                      <div className="text-[#00F0FF] font-black text-xs sm:text-sm lg:text-base mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-cyan-400 shrink-0" />
                         Deterministic Fault Triage & Instant TT
                       </div>
-                      <p className="text-xs sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal">
+                      <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-relaxed font-normal">
                         Automated decision trees guide agents step-by-step through FTTH Voice, PON, and speed triage, auto-generating 1-click formatted Trouble Tickets without manual typing.
                       </p>
                     </div>
 
-                    <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/40 transition-all">
-                      <div className="text-[#00F0FF] font-black text-base sm:text-lg lg:text-xl mb-1.5 sm:mb-2 flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0" />
+                    <div className="p-2.5 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-center">
+                      <div className="text-[#00F0FF] font-black text-xs sm:text-sm lg:text-base mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-cyan-400 shrink-0" />
                         100% Real-Time Official SLT QA Scoring
                       </div>
-                      <p className="text-xs sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal">
+                      <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-relaxed font-normal">
                         Continuously grades 100% of calls against official SLT standards (Trilingual Greeting, Sir/Madam courtesy, 45s Hold threshold, and IVR C-Sat announcement) with real-time feedback.
                       </p>
                     </div>
@@ -1061,18 +1050,18 @@ export default function App() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
-                  className={`p-4 sm:p-6 lg:p-10 rounded-2xl sm:rounded-3xl border backdrop-blur-2xl relative overflow-hidden ${
+                  className={`flex-1 min-h-0 flex flex-col justify-between p-3 sm:p-5 rounded-2xl border backdrop-blur-2xl relative overflow-hidden ${
                     isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200'
                   }`}
                 >
                   {/* Stakeholder Selector Pills */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/10">
-                    <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none max-w-full pb-1">
+                  <div className="flex items-center justify-between gap-2 shrink-0 pb-2 border-b border-white/10">
+                    <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none">
                       {STAKEHOLDERS.map((stk, idx) => (
                         <button
                           key={idx}
                           onClick={() => setStakeholderIdx(idx)}
-                          className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                          className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                             stakeholderIdx === idx
                               ? 'bg-cyan-500 text-slate-900 shadow-md shadow-cyan-500/20'
                               : 'bg-white/5 border border-white/10 text-slate-300 hover:text-white'
@@ -1084,23 +1073,23 @@ export default function App() {
                     </div>
 
                     {/* Step buttons */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 shrink-0">
                       <button
                         onClick={() => setStakeholderIdx(prev => (prev > 0 ? prev - 1 : STAKEHOLDERS.length - 1))}
-                        className="p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
+                        className="p-1 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
                         title="Previous Stakeholder"
                       >
-                        <ArrowLeft className="w-4 h-4" />
+                        <ArrowLeft className="w-3.5 h-3.5" />
                       </button>
-                      <span className="text-xs font-mono font-bold text-slate-400">
-                        {stakeholderIdx + 1} / {STAKEHOLDERS.length}
+                      <span className="text-[11px] font-mono font-bold text-slate-400">
+                        {stakeholderIdx + 1}/{STAKEHOLDERS.length}
                       </span>
                       <button
                         onClick={() => setStakeholderIdx(prev => (prev < STAKEHOLDERS.length - 1 ? prev + 1 : 0))}
-                        className="p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
+                        className="p-1 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
                         title="Next Stakeholder"
                       >
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
@@ -1109,26 +1098,26 @@ export default function App() {
                   {(() => {
                     const StkIcon = activeStakeholder.icon;
                     return (
-                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-                        <div className="lg:col-span-4 flex flex-col items-center text-center p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10">
-                          <div className={`p-4 sm:p-5 rounded-2xl bg-gradient-to-r ${activeStakeholder.color} text-white mb-3 sm:mb-4 shadow-xl`}>
-                            <StkIcon className="w-8 h-8 sm:w-12 sm:h-12" />
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-5 items-center flex-1 min-h-0">
+                        <div className="lg:col-span-4 flex flex-col items-center text-center p-3 sm:p-4 rounded-xl bg-white/5 border border-white/10">
+                          <div className={`p-3 sm:p-4 rounded-xl bg-gradient-to-r ${activeStakeholder.color} text-white mb-2 shadow-lg`}>
+                            <StkIcon className="w-6 h-6 sm:w-8 sm:h-8" />
                           </div>
-                          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 mb-2">
+                          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 mb-1">
                             {activeStakeholder.badge}
                           </span>
-                          <h4 className="text-lg sm:text-2xl font-black text-white">{activeStakeholder.name}</h4>
-                          <p className="text-xs sm:text-sm text-cyan-200 mt-1 font-semibold">{activeStakeholder.department}</p>
+                          <h4 className="text-sm sm:text-lg font-black text-white">{activeStakeholder.name}</h4>
+                          <p className="text-[11px] sm:text-xs text-cyan-200 mt-0.5 font-semibold">{activeStakeholder.department}</p>
                         </div>
 
-                        <div className="lg:col-span-8 flex flex-col justify-center">
-                          <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest mb-1.5 sm:mb-2">Strategic Contributions & Role</span>
-                          <h4 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white mb-4 sm:mb-6">{activeStakeholder.role}</h4>
-                          <div className="space-y-2.5 sm:space-y-4">
+                        <div className="lg:col-span-8 flex flex-col justify-center flex-1 min-h-0 gap-1.5 sm:gap-2">
+                          <span className="text-[9px] sm:text-[10px] font-bold text-cyan-400 uppercase tracking-widest">Strategic Contributions & Role</span>
+                          <h4 className="text-sm sm:text-lg font-extrabold text-white">{activeStakeholder.role}</h4>
+                          <div className="space-y-1.5 sm:space-y-2">
                             {activeStakeholder.contributions.map((c, i) => (
-                              <div key={i} className="p-3 sm:p-4 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2.5 sm:gap-3">
-                                <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400 shrink-0 mt-0.5" />
-                                <span className="text-xs sm:text-base lg:text-lg text-slate-200 font-medium leading-relaxed">{c}</span>
+                              <div key={i} className="p-2 sm:p-2.5 rounded-lg bg-white/5 border border-white/10 flex items-start gap-2">
+                                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                <span className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed">{c}</span>
                               </div>
                             ))}
                           </div>
@@ -1145,39 +1134,39 @@ export default function App() {
           {currentSlide === 3 && (
             <motion.div
               key="slide-3"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="w-full flex flex-col gap-4 sm:gap-6 my-auto"
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35 }}
+              className="w-full h-full max-h-full flex flex-col justify-between overflow-hidden py-1"
             >
               {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 shrink-0 mb-2">
                 <div>
-                  <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400 mb-0.5 sm:mb-1">
+                  <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">
                     Slide 03 • Project Lifecycle & Milestones
                   </div>
-                  <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+                  <h2 className="text-lg sm:text-2xl lg:text-3xl font-black tracking-tight">
                     Progress Summary & Workflow Tracking
                   </h2>
                 </div>
 
                 {/* Overall Score Banner */}
-                <div className={`flex items-center gap-3 sm:gap-5 px-4 sm:px-6 py-2 sm:py-3 rounded-2xl border backdrop-blur-xl self-start sm:self-auto ${
-                  isDark ? 'bg-cyan-950/30 border-cyan-500/40' : 'bg-cyan-50 border-cyan-200 shadow-md'
+                <div className={`flex items-center gap-2.5 px-3 py-1.5 rounded-xl border backdrop-blur-xl shrink-0 self-start sm:self-auto ${
+                  isDark ? 'bg-cyan-950/30 border-cyan-500/40' : 'bg-cyan-50 border-cyan-200 shadow-sm'
                 }`}>
                   <div>
-                    <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">Total Completion</div>
-                    <div className="text-2xl sm:text-4xl font-black text-white">{overallProgress}%</div>
+                    <div className="text-[9px] font-bold uppercase tracking-wider text-cyan-400">Total Completion</div>
+                    <div className="text-lg sm:text-xl font-black text-white">{overallProgress}%</div>
                   </div>
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-4 border-cyan-400/20 border-t-cyan-400 flex items-center justify-center font-bold text-[10px] sm:text-xs text-cyan-300 animate-spin" style={{ animationDuration: '8s' }}>
+                  <div className="w-8 h-8 rounded-full border-2 border-cyan-400/20 border-t-cyan-400 flex items-center justify-center font-bold text-[9px] text-cyan-300 animate-spin" style={{ animationDuration: '8s' }}>
                     v2.4
                   </div>
                 </div>
               </div>
 
               {/* 4 Large Stage Selector Cards */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 shrink-0 mb-2">
                 {WORKFLOW_PHASES.map((phase) => {
                   const Icon = phase.icon;
                   const isSelected = activeWorkflowTab === phase.id;
@@ -1185,33 +1174,33 @@ export default function App() {
                     <button
                       key={phase.id}
                       onClick={() => setActiveWorkflowTab(phase.id as any)}
-                      className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl border text-left transition-all cursor-pointer relative overflow-hidden ${
+                      className={`p-2 sm:p-2.5 rounded-xl border text-left transition-all cursor-pointer relative overflow-hidden ${
                         isSelected
-                          ? 'bg-cyan-500/15 border-cyan-400 shadow-xl shadow-cyan-500/10 -translate-y-0.5 sm:-translate-y-1'
+                          ? 'bg-cyan-500/15 border-cyan-400 shadow-md shadow-cyan-500/10'
                           : isDark
                           ? 'bg-white/5 border-white/10 hover:border-white/25'
                           : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-2 sm:mb-3">
-                        <div className={`p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl ${
+                      <div className="flex items-center justify-between mb-1">
+                        <div className={`p-1 rounded-lg ${
                           isSelected ? 'bg-cyan-500 text-slate-900 font-bold' : 'bg-white/10 text-cyan-400'
                         }`}>
-                          <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                          <Icon className="w-3.5 h-3.5" />
                         </div>
-                        <span className={`text-[9px] sm:text-xs font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border ${phase.statusColor}`}>
+                        <span className={`text-[8px] sm:text-[9px] font-bold px-1.5 py-0.5 rounded-full border ${phase.statusColor}`}>
                           {phase.status}
                         </span>
                       </div>
-                      <div className="text-xs sm:text-base font-bold text-white truncate">{phase.name}</div>
+                      <div className="text-xs font-bold text-white truncate">{phase.name}</div>
                       
-                      {/* Large Progress Bar */}
-                      <div className="mt-2.5 sm:mt-4">
-                        <div className="flex justify-between text-[10px] sm:text-sm font-bold mb-1 sm:mb-1.5">
-                          <span className="text-slate-400">Completed</span>
+                      {/* Compact Progress Bar */}
+                      <div className="mt-1.5">
+                        <div className="flex justify-between text-[9px] sm:text-[10px] font-bold mb-0.5">
+                          <span className="text-slate-400">Done</span>
                           <span className="text-cyan-400">{phase.percentage}%</span>
                         </div>
-                        <div className="w-full h-2 sm:h-3 rounded-full bg-white/10 overflow-hidden">
+                        <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
                           <div
                             className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full transition-all duration-700"
                             style={{ width: `${phase.percentage}%` }}
@@ -1227,69 +1216,67 @@ export default function App() {
               {(() => {
                 const currentPhase = WORKFLOW_PHASES.find(p => p.id === activeWorkflowTab)!;
                 return (
-                  <div className={`p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border backdrop-blur-2xl ${
+                  <div className={`flex-1 min-h-0 flex flex-col justify-between p-3 sm:p-5 rounded-2xl border backdrop-blur-2xl overflow-hidden ${
                     isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200 shadow-md'
                   }`}>
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/10">
+                    <div className="flex items-center justify-between gap-2 shrink-0 pb-2 border-b border-white/10">
                       <div>
-                        <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest">Selected Stage Inspection</span>
-                        <h3 className="text-xl sm:text-3xl lg:text-4xl font-black text-white mt-0.5 sm:mt-1">{currentPhase.name}</h3>
+                        <span className="text-[9px] sm:text-[10px] font-bold text-cyan-400 uppercase tracking-widest">Stage Inspection</span>
+                        <h3 className="text-sm sm:text-lg font-black text-white">{currentPhase.name}</h3>
                       </div>
-                      <div className="flex items-center gap-2 sm:gap-3">
-                        <span className={`text-xs sm:text-sm font-bold px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border ${currentPhase.statusColor}`}>
-                          Phase Status: {currentPhase.status} ({currentPhase.percentage}%)
-                        </span>
-                      </div>
+                      <span className={`text-[10px] sm:text-xs font-bold px-2.5 py-0.5 rounded-full border ${currentPhase.statusColor}`}>
+                        {currentPhase.status} ({currentPhase.percentage}%)
+                      </span>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-                      {/* Left: Deliverables with Large Readable Text */}
-                      <div className="lg:col-span-7 space-y-2 sm:space-y-3">
-                        <h4 className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 sm:mb-4 flex items-center gap-2">
-                          <ListChecks className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-5 items-start flex-1 min-h-0 pt-2">
+                      {/* Left: Deliverables with Clean Compact Layout */}
+                      <div className="lg:col-span-7 space-y-1.5 flex-1 min-h-0">
+                        <h4 className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 flex items-center gap-1.5 mb-1">
+                          <ListChecks className="w-3.5 h-3.5 text-cyan-400" />
                           Workstream Deliverables & Outcomes
                         </h4>
                         {currentPhase.deliverables.map((item, i) => (
                           <div
                             key={i}
-                            className={`p-3 sm:p-4 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 transition-all ${
+                            className={`p-2 rounded-lg border flex items-center justify-between gap-2 transition-all ${
                               item.completed
                                 ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-200'
                                 : 'bg-cyan-500/10 border-cyan-500/30 text-cyan-200'
                             }`}
                           >
-                            <div className="flex items-center gap-2.5 sm:gap-3">
+                            <div className="flex items-center gap-2 truncate">
                               {item.completed ? (
-                                <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400 shrink-0" />
+                                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                               ) : (
-                                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400 shrink-0 animate-spin" style={{ animationDuration: '6s' }} />
+                                <Clock className="w-4 h-4 text-cyan-400 shrink-0 animate-spin" style={{ animationDuration: '6s' }} />
                               )}
-                              <span className="text-xs sm:text-base lg:text-lg font-bold">{item.name}</span>
+                              <span className="text-xs sm:text-sm font-bold truncate">{item.name}</span>
                             </div>
-                            <span className="text-[10px] sm:text-xs text-slate-400 font-mono font-bold shrink-0 self-end sm:self-auto">{item.date}</span>
+                            <span className="text-[9px] sm:text-[10px] text-slate-400 font-mono font-bold shrink-0">{item.date}</span>
                           </div>
                         ))}
                       </div>
 
-                      {/* Right: Notes & Big Stats */}
-                      <div className="lg:col-span-5 flex flex-col justify-between h-full gap-3 sm:gap-4">
-                        <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10">
-                          <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest block mb-1.5 sm:mb-2">Stage Executive Summary</span>
-                          <p className="text-xs sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal">{currentPhase.notes}</p>
+                      {/* Right: Notes & Compact Stats */}
+                      <div className="lg:col-span-5 flex flex-col justify-between gap-2 h-full">
+                        <div className="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10">
+                          <span className="text-[9px] sm:text-[10px] font-bold text-cyan-400 uppercase tracking-widest block mb-1">Stage Executive Summary</span>
+                          <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal">{currentPhase.notes}</p>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                          <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-center">
-                            <div className="text-xl sm:text-3xl lg:text-4xl font-black text-cyan-400">18</div>
-                            <div className="text-[9px] sm:text-[11px] text-slate-400 uppercase font-bold mt-1">Epics Shipped</div>
+                        <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
+                          <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-center">
+                            <div className="text-base sm:text-xl font-black text-cyan-400">18</div>
+                            <div className="text-[8px] sm:text-[9px] text-slate-400 uppercase font-bold">Epics Done</div>
                           </div>
-                          <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-center">
-                            <div className="text-xl sm:text-3xl lg:text-4xl font-black text-emerald-400">99.4%</div>
-                            <div className="text-[9px] sm:text-[11px] text-slate-400 uppercase font-bold mt-1">Phonetic Rate</div>
+                          <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-center">
+                            <div className="text-base sm:text-xl font-black text-emerald-400">99.4%</div>
+                            <div className="text-[8px] sm:text-[9px] text-slate-400 uppercase font-bold">Phonetic Rate</div>
                           </div>
-                          <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-center">
-                            <div className="text-xl sm:text-3xl lg:text-4xl font-black text-blue-400">&lt;0.42s</div>
-                            <div className="text-[9px] sm:text-[11px] text-slate-400 uppercase font-bold mt-1">Mean Latency</div>
+                          <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-center">
+                            <div className="text-base sm:text-xl font-black text-blue-400">&lt;0.42s</div>
+                            <div className="text-[8px] sm:text-[9px] text-slate-400 uppercase font-bold">Mean Latency</div>
                           </div>
                         </div>
                       </div>
@@ -1304,47 +1291,47 @@ export default function App() {
           {currentSlide === 4 && (
             <motion.div
               key="slide-4"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="w-full flex flex-col gap-4 sm:gap-6 my-auto"
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35 }}
+              className="w-full h-full max-h-full flex flex-col justify-between overflow-hidden py-1"
             >
               {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 shrink-0 mb-2">
                 <div>
-                  <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400 mb-0.5 sm:mb-1">
+                  <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">
                     Slide 04 • Technical Milestones Delivered
                   </div>
-                  <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+                  <h2 className="text-lg sm:text-2xl lg:text-3xl font-black tracking-tight">
                     Key Achievements & Breakthroughs
                   </h2>
                 </div>
 
                 {/* Card Step Buttons */}
-                <div className="flex items-center gap-2 self-start sm:self-auto">
+                <div className="flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
                   <button
                     onClick={() => setSelectedAchievement(prev => (prev > 1 ? prev - 1 : ACHIEVEMENTS.length))}
-                    className="p-1.5 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
+                    className="p-1 sm:p-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
                     title="Previous Achievement"
                   >
-                    <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <ArrowLeft className="w-3.5 h-3.5" />
                   </button>
-                  <span className="text-xs sm:text-sm font-mono font-bold text-cyan-400 px-2">
-                    Card {selectedAchievement} / {ACHIEVEMENTS.length}
+                  <span className="text-[11px] sm:text-xs font-mono font-bold text-cyan-400 px-1">
+                    Card {selectedAchievement}/{ACHIEVEMENTS.length}
                   </span>
                   <button
                     onClick={() => setSelectedAchievement(prev => (prev < ACHIEVEMENTS.length ? prev + 1 : 1))}
-                    className="p-1.5 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
+                    className="p-1 sm:p-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
                     title="Next Achievement"
                   >
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
 
-              {/* 4 Large Tab Switchers */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+              {/* 4 Tab Switchers */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 shrink-0 mb-2">
                 {ACHIEVEMENTS.map((item) => {
                   const Icon = item.icon;
                   const isSelected = selectedAchievement === item.id;
@@ -1352,17 +1339,17 @@ export default function App() {
                     <button
                       key={item.id}
                       onClick={() => setSelectedAchievement(item.id)}
-                      className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border text-left transition-all cursor-pointer ${
+                      className={`p-2 sm:p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-cyan-500/20 border-cyan-400 text-[#00F0FF] shadow-lg shadow-cyan-500/10'
+                          ? 'bg-cyan-500/20 border-cyan-400 text-[#00F0FF] shadow-md shadow-cyan-500/10'
                           : 'bg-white/5 border-white/10 text-slate-400 hover:text-white'
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-1.5 sm:mb-2">
-                        <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
-                        <span className="text-[10px] sm:text-xs font-bold text-emerald-400">{item.metric}</span>
+                      <div className="flex items-center justify-between mb-1">
+                        <Icon className="w-3.5 h-3.5 text-cyan-400" />
+                        <span className="text-[9px] sm:text-[10px] font-bold text-emerald-400">{item.metric}</span>
                       </div>
-                      <div className="text-xs sm:text-sm font-bold text-white truncate">{item.title}</div>
+                      <div className="text-xs font-bold text-white truncate">{item.title}</div>
                     </button>
                   );
                 })}
@@ -1378,42 +1365,42 @@ export default function App() {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.98 }}
-                    className={`p-4 sm:p-6 lg:p-10 rounded-2xl sm:rounded-3xl border backdrop-blur-2xl ${
+                    className={`flex-1 min-h-0 flex flex-col justify-between p-3 sm:p-5 rounded-2xl border backdrop-blur-2xl overflow-hidden ${
                       isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200 shadow-xl'
                     }`}
                   >
-                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6 mb-4 sm:mb-8 pb-4 sm:pb-6 border-b border-white/10">
-                      <div className="flex items-center gap-3 sm:gap-5">
-                        <div className={`p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-r ${active.color} text-white shadow-xl shrink-0`}>
-                          <Icon className="w-7 h-7 sm:w-10 sm:h-10 lg:w-12 lg:h-12" />
+                    <div className="flex items-center justify-between gap-3 shrink-0 pb-2 border-b border-white/10">
+                      <div className="flex items-center gap-2.5 sm:gap-3">
+                        <div className={`p-2 sm:p-2.5 rounded-xl bg-gradient-to-r ${active.color} text-white shadow-md shrink-0`}>
+                          <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                         </div>
                         <div>
-                          <div className="text-[10px] sm:text-xs text-cyan-400 font-bold uppercase tracking-widest">{active.category} • {active.date}</div>
-                          <h3 className="text-xl sm:text-3xl lg:text-4xl font-black text-white mt-0.5 sm:mt-1 leading-tight">{active.title}</h3>
+                          <div className="text-[9px] sm:text-[10px] text-cyan-400 font-bold uppercase tracking-widest">{active.category} • {active.date}</div>
+                          <h3 className="text-sm sm:text-lg font-black text-white mt-0.5 leading-tight">{active.title}</h3>
                         </div>
                       </div>
 
-                      {/* Huge Verified Metric Badge */}
-                      <div className="px-4 sm:px-6 py-2.5 sm:py-4 rounded-xl sm:rounded-2xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-center shrink-0 self-start lg:self-auto">
-                        <div className="text-[10px] sm:text-xs uppercase font-bold text-emerald-400 tracking-widest">Verified Target</div>
-                        <div className="text-xl sm:text-3xl lg:text-4xl font-black">{active.metric}</div>
+                      {/* Verified Metric Badge */}
+                      <div className="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-center shrink-0">
+                        <div className="text-[8px] sm:text-[9px] uppercase font-bold text-emerald-400 tracking-widest">Verified Target</div>
+                        <div className="text-base sm:text-xl font-black">{active.metric}</div>
                       </div>
                     </div>
 
-                    <p className="text-sm sm:text-lg lg:text-xl text-slate-200 leading-relaxed mb-4 sm:mb-8 font-medium">
+                    <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal py-1">
                       {active.desc}
                     </p>
 
                     <div>
-                      <h4 className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 sm:mb-4 flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
+                      <h4 className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5 flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                         Key Engineering Breakthroughs Delivered
                       </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                         {active.highlights.map((h, i) => (
-                          <div key={i} className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-xs sm:text-base lg:text-lg text-slate-100 flex items-start gap-2.5 sm:gap-3">
-                            <span className="text-cyan-400 font-bold text-base sm:text-lg">✔</span>
-                            <span className="font-semibold leading-snug">{h}</span>
+                          <div key={i} className="p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-slate-100 flex items-start gap-2">
+                            <span className="text-cyan-400 font-bold">✔</span>
+                            <span className="font-medium leading-snug">{h}</span>
                           </div>
                         ))}
                       </div>
@@ -1428,64 +1415,64 @@ export default function App() {
           {currentSlide === 5 && (
             <motion.div
               key="slide-5"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="w-full flex flex-col gap-4 sm:gap-6 my-auto"
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35 }}
+              className="w-full h-full max-h-full flex flex-col justify-between overflow-hidden py-1"
             >
               {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 shrink-0 mb-2">
                 <div>
-                  <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-rose-400 mb-0.5 sm:mb-1">
+                  <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-rose-400">
                     Slide 05 • Risk Governance & Mitigation
                   </div>
-                  <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+                  <h2 className="text-lg sm:text-2xl lg:text-3xl font-black tracking-tight">
                     Challenges & Risk Analysis Matrix
                   </h2>
                 </div>
 
                 {/* Risk Card Step Buttons */}
-                <div className="flex items-center gap-2 self-start sm:self-auto">
+                <div className="flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
                   <button
                     onClick={() => setActiveRiskIdx(prev => (prev > 0 ? prev - 1 : RISKS.length - 1))}
-                    className="p-1.5 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
+                    className="p-1 sm:p-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
                     title="Previous Risk"
                   >
-                    <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <ArrowLeft className="w-3.5 h-3.5" />
                   </button>
-                  <span className="text-xs sm:text-sm font-mono font-bold text-rose-400 px-2">
-                    Risk {activeRiskIdx + 1} / {RISKS.length}
+                  <span className="text-[11px] sm:text-xs font-mono font-bold text-rose-400 px-1">
+                    Risk {activeRiskIdx + 1}/{RISKS.length}
                   </span>
                   <button
                     onClick={() => setActiveRiskIdx(prev => (prev < RISKS.length - 1 ? prev + 1 : 0))}
-                    className="p-1.5 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
+                    className="p-1 sm:p-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
                     title="Next Risk"
                   >
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
 
               {/* 4 Risk Selector Tabs */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 shrink-0 mb-2">
                 {RISKS.map((risk, idx) => (
                   <button
                     key={risk.id}
                     onClick={() => setActiveRiskIdx(idx)}
-                    className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border text-left transition-all cursor-pointer ${
+                    className={`p-2 sm:p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
                       activeRiskIdx === idx
-                        ? 'bg-rose-500/20 border-rose-400 text-rose-300 shadow-lg shadow-rose-500/10'
+                        ? 'bg-rose-500/20 border-rose-400 text-rose-300 shadow-md shadow-rose-500/10'
                         : 'bg-white/5 border-white/10 text-slate-400 hover:text-white'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1 sm:mb-1.5">
-                      <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase">{risk.category}</span>
-                      <span className={`text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full border ${risk.severityClass}`}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[9px] font-mono font-bold uppercase">{risk.category}</span>
+                      <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded-full border ${risk.severityClass}`}>
                         {risk.severity}
                       </span>
                     </div>
-                    <div className="text-xs sm:text-sm font-bold text-white truncate">{risk.title}</div>
+                    <div className="text-xs font-bold text-white truncate">{risk.title}</div>
                   </button>
                 ))}
               </div>
@@ -1499,53 +1486,53 @@ export default function App() {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.98 }}
-                    className={`p-4 sm:p-6 lg:p-10 rounded-2xl sm:rounded-3xl border backdrop-blur-2xl ${
+                    className={`flex-1 min-h-0 flex flex-col justify-between p-3 sm:p-5 rounded-2xl border backdrop-blur-2xl overflow-hidden ${
                       isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200 shadow-xl'
                     }`}
                   >
-                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6 mb-4 sm:mb-8 pb-4 sm:pb-6 border-b border-white/10">
-                      <div className="flex items-center gap-3 sm:gap-4">
-                        <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-rose-500/20 text-rose-400 border border-rose-500/30 shrink-0">
-                          <RiskIcon className="w-7 h-7 sm:w-10 sm:h-10" />
+                    <div className="flex items-center justify-between gap-3 shrink-0 pb-2 border-b border-white/10">
+                      <div className="flex items-center gap-2.5">
+                        <div className="p-2 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30 shrink-0">
+                          <RiskIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                         </div>
                         <div>
-                          <div className="text-[10px] sm:text-xs text-rose-400 font-bold uppercase tracking-widest">{activeRisk.category} Risk</div>
-                          <h3 className="text-xl sm:text-3xl lg:text-4xl font-black text-white mt-0.5">{activeRisk.title}</h3>
+                          <div className="text-[9px] sm:text-[10px] text-rose-400 font-bold uppercase tracking-widest">{activeRisk.category} Risk</div>
+                          <h3 className="text-sm sm:text-lg font-black text-white">{activeRisk.title}</h3>
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                        <span className={`text-xs sm:text-base font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl border ${activeRisk.severityClass}`}>
-                          Severity: {activeRisk.severity}
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span className={`text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-lg border ${activeRisk.severityClass}`}>
+                          {activeRisk.severity}
                         </span>
-                        <span className="text-xs sm:text-base font-bold text-emerald-400 bg-emerald-500/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-emerald-500/30">
+                        <span className="text-[10px] sm:text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-lg border border-emerald-500/30">
                           {activeRisk.status}
                         </span>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-3 flex-1 min-h-0 my-1">
                       {/* Blocker Alert Box */}
-                      <div className="p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl bg-rose-500/10 border border-rose-500/30">
-                        <span className="text-[10px] sm:text-xs font-bold text-rose-400 uppercase tracking-widest block mb-1.5 sm:mb-2">Blocker & Impact</span>
-                        <p className="text-sm sm:text-lg lg:text-xl text-rose-100 font-semibold leading-relaxed">
+                      <div className="p-2.5 sm:p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 flex flex-col justify-center">
+                        <span className="text-[9px] sm:text-[10px] font-bold text-rose-400 uppercase tracking-widest block mb-1">Blocker & Impact</span>
+                        <p className="text-xs sm:text-sm text-rose-100 font-medium leading-relaxed">
                           {activeRisk.blocker}
                         </p>
                       </div>
 
                       {/* Mitigation Resolution Box */}
-                      <div className="p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl bg-cyan-500/10 border border-cyan-500/30">
-                        <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest block mb-1.5 sm:mb-2">Mitigation Strategy Delivered</span>
-                        <p className="text-sm sm:text-lg lg:text-xl text-cyan-100 font-semibold leading-relaxed">
+                      <div className="p-2.5 sm:p-3.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex flex-col justify-center">
+                        <span className="text-[9px] sm:text-[10px] font-bold text-cyan-400 uppercase tracking-widest block mb-1">Mitigation Strategy Delivered</span>
+                        <p className="text-xs sm:text-sm text-cyan-100 font-medium leading-relaxed">
                           {activeRisk.mitigation}
                         </p>
                       </div>
                     </div>
 
                     {/* Impact Indicators */}
-                    <div className="pt-3 sm:pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 text-xs sm:text-base text-slate-400 font-mono">
-                      <span>Operational Impact: <strong className="text-white text-sm sm:text-lg">{activeRisk.impact}</strong></span>
-                      <span>Occurrence Probability: <strong className="text-white text-sm sm:text-lg">{activeRisk.probability}</strong></span>
+                    <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] sm:text-xs text-slate-400 font-mono shrink-0">
+                      <span>Operational Impact: <strong className="text-white">{activeRisk.impact}</strong></span>
+                      <span>Occurrence Probability: <strong className="text-white">{activeRisk.probability}</strong></span>
                     </div>
                   </motion.div>
                 );
@@ -1557,64 +1544,64 @@ export default function App() {
           {currentSlide === 6 && (
             <motion.div
               key="slide-6"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="w-full flex flex-col gap-4 sm:gap-6 my-auto"
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35 }}
+              className="w-full h-full max-h-full flex flex-col justify-between overflow-hidden py-1"
             >
               {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 shrink-0 mb-2">
                 <div>
-                  <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400 mb-0.5 sm:mb-1">
+                  <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">
                     Slide 06 • Execution Roadmap & Delivery Targets
                   </div>
-                  <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+                  <h2 className="text-lg sm:text-2xl lg:text-3xl font-black tracking-tight">
                     Next Steps & Production Roadmap
                   </h2>
                 </div>
 
                 {/* Phase Step Buttons */}
-                <div className="flex items-center gap-2 self-start sm:self-auto">
+                <div className="flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
                   <button
                     onClick={() => setActiveRoadmapIdx(prev => (prev > 0 ? prev - 1 : ROADMAP_STEPS.length - 1))}
-                    className="p-1.5 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
+                    className="p-1 sm:p-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
                     title="Previous Phase"
                   >
-                    <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <ArrowLeft className="w-3.5 h-3.5" />
                   </button>
-                  <span className="text-xs sm:text-sm font-mono font-bold text-cyan-400 px-2">
-                    Phase {activeRoadmapIdx + 1} / {ROADMAP_STEPS.length}
+                  <span className="text-[11px] sm:text-xs font-mono font-bold text-cyan-400 px-1">
+                    Phase {activeRoadmapIdx + 1}/{ROADMAP_STEPS.length}
                   </span>
                   <button
                     onClick={() => setActiveRoadmapIdx(prev => (prev < ROADMAP_STEPS.length - 1 ? prev + 1 : 0))}
-                    className="p-1.5 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
+                    className="p-1 sm:p-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
                     title="Next Phase"
                   >
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
 
               {/* 4 Phase Selector Tabs */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 shrink-0 mb-2">
                 {ROADMAP_STEPS.map((step, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveRoadmapIdx(idx)}
-                    className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border text-left transition-all cursor-pointer ${
+                    className={`p-2 sm:p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
                       activeRoadmapIdx === idx
-                        ? 'bg-cyan-500/20 border-cyan-400 text-[#00F0FF] shadow-lg shadow-cyan-500/10'
+                        ? 'bg-cyan-500/20 border-cyan-400 text-[#00F0FF] shadow-md shadow-cyan-500/10'
                         : 'bg-white/5 border-white/10 text-slate-400 hover:text-white'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1 sm:mb-1.5">
-                      <span className="text-[10px] sm:text-xs font-mono font-bold text-cyan-400">Phase 0{idx + 1}</span>
-                      <span className={`text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full border ${step.statusBadge}`}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[9px] font-mono font-bold text-cyan-400">Phase 0{idx + 1}</span>
+                      <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded-full border ${step.statusBadge}`}>
                         {step.status}
                       </span>
                     </div>
-                    <div className="text-xs sm:text-sm font-bold text-white truncate">{step.phase}</div>
+                    <div className="text-xs font-bold text-white truncate">{step.phase}</div>
                   </button>
                 ))}
               </div>
@@ -1628,40 +1615,40 @@ export default function App() {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.98 }}
-                    className={`p-4 sm:p-6 lg:p-10 rounded-2xl sm:rounded-3xl border backdrop-blur-2xl ${
+                    className={`flex-1 min-h-0 flex flex-col justify-between p-3 sm:p-5 rounded-2xl border backdrop-blur-2xl overflow-hidden ${
                       isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200 shadow-xl'
                     }`}
                   >
-                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6 mb-4 sm:mb-8 pb-4 sm:pb-6 border-b border-white/10">
+                    <div className="flex items-center justify-between gap-3 shrink-0 pb-2 border-b border-white/10">
                       <div>
-                        <div className="flex items-center gap-2.5 sm:gap-3 mb-1.5 sm:mb-2">
-                          <span className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-white font-black text-xs sm:text-sm">
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="w-6 h-6 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-white font-black text-xs">
                             0{activeRoadmapIdx + 1}
                           </span>
-                          <span className="text-xs sm:text-base font-bold text-cyan-400 font-mono flex items-center gap-1.5">
-                            <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                          <span className="text-xs sm:text-sm font-bold text-cyan-400 font-mono flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5" />
                             {step.timeline}
                           </span>
                         </div>
-                        <h3 className="text-xl sm:text-3xl lg:text-5xl font-black text-white leading-tight">{step.phase}</h3>
-                        <div className="text-xs sm:text-base lg:text-xl font-bold text-slate-300 mt-1.5 sm:mt-2 bg-white/5 px-3 sm:px-4 py-1 sm:py-1.5 rounded-xl border border-white/10 inline-block">
+                        <h3 className="text-sm sm:text-lg font-black text-white leading-tight">{step.phase}</h3>
+                        <div className="text-[11px] sm:text-xs font-bold text-slate-300 mt-0.5 bg-white/5 px-2.5 py-0.5 rounded-lg border border-white/10 inline-block">
                           Core Focus: {step.focus}
                         </div>
                       </div>
 
                       {/* Target Metric Banner */}
-                      <div className="px-4 sm:px-8 py-3 sm:py-5 rounded-2xl sm:rounded-3xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-center shrink-0 self-start lg:self-auto">
-                        <div className="text-[10px] sm:text-xs uppercase font-bold text-emerald-400 tracking-widest">Delivery Metric</div>
-                        <div className="text-lg sm:text-2xl lg:text-3xl font-black">{step.targetMetric}</div>
+                      <div className="px-3 sm:px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-center shrink-0">
+                        <div className="text-[8px] sm:text-[9px] uppercase font-bold text-emerald-400 tracking-widest">Delivery Metric</div>
+                        <div className="text-sm sm:text-lg font-black">{step.targetMetric}</div>
                       </div>
                     </div>
 
-                    <div className="space-y-2.5 sm:space-y-4 mb-4 sm:mb-6">
-                      <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest block">Core Deliverables & Target Items</span>
+                    <div className="space-y-1.5 flex-1 min-h-0 my-1">
+                      <span className="text-[9px] sm:text-[10px] font-bold text-cyan-400 uppercase tracking-widest block">Core Deliverables & Target Items</span>
                       {step.deliverables.map((d, dIdx) => (
-                        <div key={dIdx} className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 flex items-start gap-2.5 sm:gap-3">
-                          <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400 shrink-0 mt-0.5" />
-                          <span className="text-xs sm:text-lg lg:text-xl text-slate-200 font-semibold leading-relaxed">{d}</span>
+                        <div key={dIdx} className="p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                          <span className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed">{d}</span>
                         </div>
                       ))}
                     </div>
@@ -1675,44 +1662,44 @@ export default function App() {
           {currentSlide === 7 && (
             <motion.div
               key="slide-7"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="w-full flex flex-col gap-4 sm:gap-6 my-auto"
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35 }}
+              className="w-full h-full max-h-full flex flex-col justify-between overflow-hidden py-1"
             >
               {/* Header & Section Switcher */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 shrink-0 mb-2">
                 <div>
-                  <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400 mb-0.5 sm:mb-1">
+                  <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">
                     Slide 07 • Review Takeaways & Floor Discussion
                   </div>
-                  <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+                  <h2 className="text-lg sm:text-2xl lg:text-3xl font-black tracking-tight">
                     Conclusion & Interactive Q&A
                   </h2>
                 </div>
 
-                <div className="w-full sm:w-auto flex items-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 rounded-2xl bg-white/5 border border-white/10 self-start sm:self-auto overflow-x-auto scrollbar-none">
+                <div className="flex items-center gap-1.5 p-1 rounded-xl bg-white/5 border border-white/10 shrink-0 self-start sm:self-auto overflow-x-auto scrollbar-none">
                   <button
                     onClick={() => setSlide7Tab('takeaways')}
-                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${
+                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
                       slide7Tab === 'takeaways'
                         ? 'bg-cyan-500 text-slate-900 shadow-md shadow-cyan-500/20'
                         : 'text-slate-400 hover:text-white'
                     }`}
                   >
-                    <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    <Award className="w-3.5 h-3.5 shrink-0" />
                     <span>01. Key Takeaways</span>
                   </button>
                   <button
                     onClick={() => setSlide7Tab('faq')}
-                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${
+                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
                       slide7Tab === 'faq'
                         ? 'bg-cyan-500 text-slate-900 shadow-md shadow-cyan-500/20'
                         : 'text-slate-400 hover:text-white'
                     }`}
                   >
-                    <HelpCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                    <HelpCircle className="w-3.5 h-3.5 shrink-0" />
                     <span>02. Floor Q&A</span>
                   </button>
                 </div>
@@ -1725,58 +1712,58 @@ export default function App() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
-                  className={`p-4 sm:p-6 lg:p-10 rounded-2xl sm:rounded-3xl border backdrop-blur-2xl ${
+                  className={`flex-1 min-h-0 flex flex-col justify-between p-3 sm:p-5 rounded-2xl border backdrop-blur-2xl overflow-hidden ${
                     isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200 shadow-xl'
                   }`}
                 >
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white mb-4 sm:mb-8 flex items-center gap-2 sm:gap-3">
-                    <Award className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" />
+                  <h3 className="text-sm sm:text-lg font-black text-white flex items-center gap-2 shrink-0 mb-2">
+                    <Award className="w-5 h-5 text-cyan-400" />
                     Key Transformative Business Outcomes
                   </h3>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-6 mb-6 sm:mb-10">
-                    <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3 flex-1 min-h-0 mb-2">
+                    <div className="p-3 sm:p-4 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between">
                       <div>
-                        <div className="text-4xl sm:text-6xl lg:text-7xl font-black text-cyan-400 mb-1 sm:mb-2">-45%</div>
-                        <div className="text-base sm:text-xl lg:text-2xl font-black text-white mb-1 sm:mb-2">Average Handling Time Drop</div>
+                        <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-cyan-400 mb-0.5">-45%</div>
+                        <div className="text-xs sm:text-sm lg:text-base font-black text-white mb-1">Average Handling Time Drop</div>
                       </div>
-                      <p className="text-xs sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal">
+                      <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal">
                         Reduces customer hold times from 45s down to under 1.5 seconds via sub-second vectorized directory lookup.
                       </p>
                     </div>
 
-                    <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                    <div className="p-3 sm:p-4 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between">
                       <div>
-                        <div className="text-4xl sm:text-6xl lg:text-7xl font-black text-emerald-400 mb-1 sm:mb-2">100%</div>
-                        <div className="text-base sm:text-xl lg:text-2xl font-black text-white mb-1 sm:mb-2">Call QA Audit Coverage</div>
+                        <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-emerald-400 mb-0.5">100%</div>
+                        <div className="text-xs sm:text-sm lg:text-base font-black text-white mb-1">Call QA Audit Coverage</div>
                       </div>
-                      <p className="text-xs sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal">
+                      <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal">
                         Replaces 2% manual sampling with continuous automated scoring for Sinhala, English, and Tamil greetings & courtesy.
                       </p>
                     </div>
 
-                    <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                    <div className="p-3 sm:p-4 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between">
                       <div>
-                        <div className="text-4xl sm:text-6xl lg:text-7xl font-black text-blue-400 mb-1 sm:mb-2">-80%</div>
-                        <div className="text-base sm:text-xl lg:text-2xl font-black text-white mb-1 sm:mb-2">TT Dispatch Latency</div>
+                        <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-blue-400 mb-0.5">-80%</div>
+                        <div className="text-xs sm:text-sm lg:text-base font-black text-white mb-1">TT Dispatch Latency</div>
                       </div>
-                      <p className="text-xs sm:text-base lg:text-lg text-slate-300 leading-relaxed font-normal">
+                      <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal">
                         Eliminates manual Trouble Ticket drafting and routing errors between MDF and Area Maintenance engineers.
                       </p>
                     </div>
                   </div>
 
                   {/* Team Contacts */}
-                  <div className="pt-4 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
-                    <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest">Project Governance & Leadership</span>
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm">
-                      <div className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-white/5 border border-white/10 text-slate-200">
+                  <div className="pt-2 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 shrink-0 text-xs">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Leadership</span>
+                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                      <div className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-200">
                         Lead: <strong>Kudagama & Dev Squad</strong>
                       </div>
-                      <div className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-white/5 border border-white/10 text-slate-200">
+                      <div className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-200">
                         Email: <strong>smartpearl@slt.lk</strong>
                       </div>
-                      <div className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-white/5 border border-white/10 text-slate-200">
+                      <div className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-200">
                         Portal: <strong>internal.slt.lk/smartpearl</strong>
                       </div>
                     </div>
@@ -1791,64 +1778,64 @@ export default function App() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
-                  className={`p-4 sm:p-6 lg:p-10 rounded-2xl sm:rounded-3xl border backdrop-blur-2xl ${
+                  className={`flex-1 min-h-0 flex flex-col justify-between p-3 sm:p-5 rounded-2xl border backdrop-blur-2xl overflow-hidden ${
                     isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200 shadow-xl'
                   }`}
                 >
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/10">
-                    <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none max-w-full pb-1">
+                  <div className="flex items-center justify-between gap-2 shrink-0 pb-2 border-b border-white/10">
+                    <div className="flex items-center gap-1 overflow-x-auto scrollbar-none">
                       {FAQS.map((_, fIdx) => (
                         <button
                           key={fIdx}
                           onClick={() => setActiveFaqIdx(fIdx)}
-                          className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                          className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                             activeFaqIdx === fIdx
                               ? 'bg-cyan-500 text-slate-900 shadow-md shadow-cyan-500/20'
                               : 'bg-white/5 border border-white/10 text-slate-300 hover:text-white'
                           }`}
                         >
-                          Question 0{fIdx + 1}
+                          Q 0{fIdx + 1}
                         </button>
                       ))}
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 shrink-0">
                       <button
                         onClick={() => setActiveFaqIdx(prev => (prev > 0 ? prev - 1 : FAQS.length - 1))}
-                        className="p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
+                        className="p-1 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
                         title="Previous Question"
                       >
-                        <ArrowLeft className="w-4 h-4" />
+                        <ArrowLeft className="w-3.5 h-3.5" />
                       </button>
-                      <span className="text-xs font-mono font-bold text-slate-400">
-                        {activeFaqIdx + 1} / {FAQS.length}
+                      <span className="text-[11px] font-mono font-bold text-slate-400">
+                        {activeFaqIdx + 1}/{FAQS.length}
                       </span>
                       <button
                         onClick={() => setActiveFaqIdx(prev => (prev < FAQS.length - 1 ? prev + 1 : 0))}
-                        className="p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
+                        className="p-1 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
                         title="Next Question"
                       >
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
 
                   {/* Focused Question & Answer Spotlight */}
-                  <div className="mb-4 sm:mb-8">
-                    <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest block mb-1.5 sm:mb-2">Featured Review Inquiry</span>
-                    <h3 className="text-lg sm:text-2xl lg:text-3xl font-black text-white mb-3 sm:mb-6">{activeFaq.q}</h3>
-                    <div className="p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl bg-cyan-950/40 border border-cyan-400/30 text-xs sm:text-lg lg:text-xl text-cyan-100 font-medium leading-relaxed">
+                  <div className="flex-1 min-h-0 flex flex-col justify-center my-1">
+                    <span className="text-[9px] sm:text-[10px] font-bold text-cyan-400 uppercase tracking-widest block mb-0.5">Featured Review Inquiry</span>
+                    <h3 className="text-xs sm:text-base font-black text-white mb-2">{activeFaq.q}</h3>
+                    <div className="p-3 sm:p-4 rounded-xl bg-cyan-950/40 border border-cyan-400/30 text-xs sm:text-sm text-cyan-100 font-medium leading-relaxed">
                       {activeFaq.a}
                     </div>
                   </div>
 
                   {/* Ask Question Box */}
-                  <div className="pt-4 sm:pt-6 border-t border-white/10">
-                    <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2 sm:mb-3">Live Question Submission to Dev Floor</span>
+                  <div className="pt-2 border-t border-white/10 shrink-0">
+                    <span className="text-[9px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Live Question Submission to Dev Floor</span>
                     {questionSubmitted ? (
-                      <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs sm:text-base font-bold flex items-center justify-between">
+                      <div className="p-2 sm:p-2.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold flex items-center justify-between">
                         <span className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                          <CheckCircle2 className="w-4 h-4 shrink-0" />
                           Question submitted to Kudagama & Dev Squad!
                         </span>
                         <button
@@ -1856,7 +1843,7 @@ export default function App() {
                             setQuestionSubmitted(false);
                             setQuestionInput('');
                           }}
-                          className="text-xs underline font-bold ml-2 shrink-0"
+                          className="text-[11px] underline font-bold ml-2 shrink-0 cursor-pointer"
                         >
                           Send another
                         </button>
@@ -1867,21 +1854,21 @@ export default function App() {
                           e.preventDefault();
                           if (questionInput.trim()) setQuestionSubmitted(true);
                         }}
-                        className="flex flex-col sm:flex-row gap-2 sm:gap-3"
+                        className="flex gap-2"
                       >
                         <input
                           type="text"
                           value={questionInput}
                           onChange={(e) => setQuestionInput(e.target.value)}
                           placeholder="Type an audience question regarding architecture, security, or deployment..."
-                          className="flex-1 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-xs sm:text-base text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
+                          className="flex-1 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
                         />
                         <button
                           type="submit"
                           disabled={!questionInput.trim()}
-                          className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-cyan-500 text-slate-900 font-bold text-xs sm:text-base hover:bg-cyan-400 transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2 shrink-0"
+                          className="px-3 sm:px-4 py-1.5 rounded-xl bg-cyan-500 text-slate-900 font-bold text-xs hover:bg-cyan-400 transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center gap-1.5 shrink-0"
                         >
-                          <Send className="w-4 h-4" />
+                          <Send className="w-3.5 h-3.5" />
                           <span>Submit</span>
                         </button>
                       </form>

@@ -14,8 +14,16 @@
 }
 
 @layer base {
+  html, body, #root {
+    height: 100%;
+    max-height: 100dvh;
+    overflow: hidden !important;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
-    @apply bg-[#030712] text-slate-100 overflow-hidden font-sans antialiased selection:bg-[#00F0FF] selection:text-[#030712];
+    @apply bg-[#030712] text-slate-100 font-sans antialiased selection:bg-[#00F0FF] selection:text-[#030712];
   }
 
   /* Light mode override support when .light class is active */
