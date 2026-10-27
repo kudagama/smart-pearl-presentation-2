@@ -697,7 +697,7 @@ export default function App() {
                       <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                       <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate">Project Lead</span>
                     </div>
-                    <div className="text-xs sm:text-base lg:text-lg font-bold text-white truncate">Kudagama & Dev Squad</div>
+                    <div className="text-xs sm:text-base lg:text-lg font-bold text-white truncate">Gehan & Dev Squad</div>
                     <div className="text-[10px] sm:text-xs lg:text-sm text-slate-400 truncate">Lead AI Architects</div>
                   </div>
 
@@ -1759,7 +1759,7 @@ export default function App() {
                     <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest">Leadership & Contacts</span>
                     <div className="flex flex-wrap items-center gap-2">
                       <div className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-200 font-medium">
-                        Lead: <strong className="text-white">Kudagama & Dev Squad</strong>
+                        Lead: <strong className="text-white">Gehan & Dev Squad</strong>
                       </div>
                       <div className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-200 font-medium">
                         Email: <strong className="text-white">smartpearl@slt.lk</strong>
@@ -1837,7 +1837,7 @@ export default function App() {
                       <div className="p-2 sm:p-2.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold flex items-center justify-between">
                         <span className="flex items-center gap-2">
                           <CheckCircle2 className="w-4 h-4 shrink-0" />
-                          Question submitted to Kudagama & Dev Squad!
+                          Question submitted to Gehan & Dev Squad!
                         </span>
                         <button
                           onClick={() => {
