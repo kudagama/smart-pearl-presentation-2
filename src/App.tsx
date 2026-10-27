@@ -39,7 +39,7 @@ const STAKEHOLDERS = [
   {
     role: "Primary Operational Beneficiaries",
     name: "SLT Contact Center Operations",
-    department: "1212 General & 1717 Broadband Helpdesk Desks",
+    department: "1212 General Contact Centre Operations",
     badge: "End Users (600+ Agents)",
     icon: Headphones,
     color: "from-cyan-500 to-teal-500",
@@ -646,7 +646,7 @@ export default function App() {
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-[#00F0FF]/25 to-transparent skew-x-12" 
                   />
                   <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400 animate-pulse shrink-0" />
-                  <span className="relative z-10">Enterprise AI Contact Center • Phase 2</span>
+                  <span className="relative z-10">SLT 1212 AI Contact Center • Phase 2</span>
                   <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-cyan-400 animate-ping shrink-0" />
                 </div>
 
@@ -685,7 +685,7 @@ export default function App() {
 
                 {/* Subtitle / Description */}
                 <p className="text-xs sm:text-base lg:text-lg xl:text-xl text-slate-200 leading-relaxed my-2 sm:my-4 font-normal">
-                  Next-generation contact center copilot empowering SLT 1212 & 1717 agents with trilingual speech intelligence, instant directory lookups, automated trouble ticketing, and official SLT QA scoring.
+                  Next-generation AI copilot empowering SLT 1212 Contact Centre staff with sub-second directory lookup, natural language contact discovery, and automated inquiry triage to eliminate customer hold times and slash Average Handling Time (AHT).
                 </p>
 
                 {/* Presenter / Team Cards */}
@@ -709,7 +709,7 @@ export default function App() {
                       <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate">Team</span>
                     </div>
                     <div className="text-xs sm:text-base lg:text-lg font-bold text-white truncate">Contact Center Colombo</div>
-                    <div className="text-[10px] sm:text-xs lg:text-sm text-slate-400 truncate">1212 / 1717 Centers</div>
+                    <div className="text-[10px] sm:text-xs lg:text-sm text-slate-400 truncate">1212 Contact Centre Staff</div>
                   </div>
 
                   <div className={`p-2.5 sm:p-4 rounded-xl border text-left backdrop-blur-md ${
