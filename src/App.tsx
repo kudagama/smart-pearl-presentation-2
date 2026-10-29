@@ -1,14 +1,14 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronLeft, ChevronRight, Clock, Zap, Sparkles, CheckCircle2,
-  AlertTriangle, Search, Target, Layers, ShieldCheck, Building2,
+  AlertTriangle, Search, Target, Layers, ShieldCheck,
   Cpu, Maximize, Minimize, RotateCcw, Headphones, Mic,
   Users, Play, Pause,
   Calendar, Award, Server, ArrowRight, ArrowLeft,
   HelpCircle, Send, Sun, Moon,
-  ListChecks, Globe, ChevronDown, Database,
-  Brain, Shield, MessageSquare
+  ListChecks, Globe, ChevronDown,
+  Brain, Shield, MessageSquare, FileText
 } from 'lucide-react';
 
 // ==========================================
@@ -17,179 +17,168 @@ import {
 
 export const SLIDES = [
   { id: 1, title: "Title & Overview", tag: "Slide 01", desc: "Project Identity & Leadership" },
-  { id: 2, title: "Project Overview", tag: "Slide 02", desc: "Executive Summary & Stakeholders" },
+  { id: 2, title: "Project Overview", tag: "Slide 02", desc: "Problem Analysis & Architecture" },
   { id: 3, title: "Progress Summary", tag: "Slide 03", desc: "Interactive Metrics & Lifecycle" },
   { id: 4, title: "Key Achievements", tag: "Slide 04", desc: "Milestones & Delivered Capabilities" },
   { id: 5, title: "Challenges & Risks", tag: "Slide 05", desc: "Risk Matrix & Mitigations" },
   { id: 6, title: "Next Steps & Roadmap", tag: "Slide 06", desc: "Phased Execution Timeline" },
-  { id: 7, title: "Conclusion & Q&A", tag: "Slide 07", desc: "Summary, Live Q&A & Contacts" }
-];
-
-// STAKEHOLDERS
-const STAKEHOLDERS = [
-  {
-    role: "Project Sponsor & Executive",
-    name: "SLT-Mobitel Corporate Leadership",
-    department: "Chief Executive & Digital Transformation Office",
-    badge: "Primary Sponsor",
-    icon: Building2,
-    color: "from-blue-600 to-cyan-600",
-    contributions: ["Strategic alignment with national digital agenda", "Budgetary allocation & infrastructure support", "Enterprise KPI definition (AHT reduction > 40%)"]
-  },
-  {
-    role: "Primary Operational Beneficiaries",
-    name: "SLT Contact Center Operations",
-    department: "1212 General Contact Centre Operations",
-    badge: "End Users (600+ Agents)",
-    icon: Headphones,
-    color: "from-cyan-500 to-teal-500",
-    contributions: ["Real-world call shadowing & workflow audits", "Standard QA script validation (Sinhala, English, Tamil)", "Daily usability feedback and pilot agent cohort"]
-  },
-  {
-    role: "Field & Network Engineering",
-    name: "NOC & Area Maintenance Units",
-    department: "MDF Operations, CEN-CSC-TECH & Regional RTOs",
-    badge: "Technical Stakeholder",
-    icon: Server,
-    color: "from-indigo-600 to-blue-500",
-    contributions: ["Fault triage decision tree codification", "Direct Trouble Ticket (TT) schema harmonization", "FTTH PON / LOS / Peering diagnostic rules"]
-  },
-  {
-    role: "Development & AI Engineering",
-    name: "Smart PEARL Core Dev Team",
-    department: "AI Innovation Lab & Full-Stack Systems Team",
-    badge: "Implementation Team",
-    icon: Cpu,
-    color: "from-emerald-500 to-teal-600",
-    contributions: ["Sub-second trilingual RAG vector search engine", "Telecom Voice Phonetic Normalizer (Singlish/Tamil)", "Automated SLT QA Evaluator with Gemini AI"]
-  }
+  { id: 7, title: "Conclusion & Summary", tag: "Slide 07", desc: "Key Highlights from All Slides" },
+  { id: 8, title: "Thank You & Q&A", tag: "Slide 08", desc: "Open Floor Discussion & Questions" }
 ];
 
 // WORKFLOW PROGRESS PHASES
 const WORKFLOW_PHASES = [
   {
     id: "planning",
-    name: "1. Planning & Architecture",
+    name: "1. Planning & Setup",
     percentage: 100,
     status: "Completed",
     statusColor: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
     icon: Target,
     deliverables: [
-      { name: "Comprehensive Project Charter & Scope Baseline", completed: true, date: "Aug 2026" },
-      { name: "100+ Hours of Agent Call Shadowing & Audio Auditing", completed: true, date: "Aug 2026" },
-      { name: "SLT Contact Center Quality Standards Ingestion (Official Rubrics)", completed: true, date: "Sep 2026" },
-      { name: "Security & Data Sovereignty Architecture Blueprint", completed: true, date: "Sep 2026" }
+      { name: "Project Plan & Scope Baseline", completed: true, date: "Aug 2026" },
+      { name: "100+ Hours of Call Shadowing & Audio Listening", completed: true, date: "Aug 2026" },
+      { name: "SLT Call Quality Standards & Rule Ingestion", completed: true, date: "Sep 2026" },
+      { name: "Security & Data Privacy Architecture Plan", completed: true, date: "Sep 2026" }
     ],
-    notes: "Completed ahead of schedule with 100% stakeholder signoff on the Trilingual Copilot scope."
+    notes: "Planning completed on schedule with full approval for the trilingual AI assistant."
   },
   {
     id: "designing",
-    name: "2. UI/UX & Triage Logic Design",
+    name: "2. Screen Design & Logic",
     percentage: 100,
     status: "Completed",
     statusColor: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
     icon: Layers,
     deliverables: [
-      { name: "High-Fidelity Agent Workspace Design System (Figma & Tailwind)", completed: true, date: "Sep 2026" },
-      { name: "Trilingual Voice Interaction & Normalizer Flow Diagrams", completed: true, date: "Sep 2026" },
-      { name: "Fault Triage Decision Tree (Fiber Voice, PON, LOS, Latency)", completed: true, date: "Oct 2026" },
-      { name: "One-Click Trouble Ticket (TT) Card System Specification", completed: true, date: "Oct 2026" }
+      { name: "Clean Agent Workspace Design (Figma & Tailwind)", completed: true, date: "Sep 2026" },
+      { name: "Voice Flow Diagrams for Sinhala, Tamil, and English", completed: true, date: "Sep 2026" },
+      { name: "Step-by-Step Fault Finding Steps (Voice, Broadband, Fiber)", completed: true, date: "Oct 2026" },
+      { name: "1-Click Trouble Ticket Template Design", completed: true, date: "Oct 2026" }
     ],
-    notes: "Design system validated with 25 active 1212 agents for cognitive load minimization."
+    notes: "Designs were tested with 25 active agents to make sure they are easy to use."
   },
   {
     id: "development",
     name: "3. Full-Stack Development",
-    percentage: 92,
+    percentage: 50,
     status: "In Progress",
     statusColor: "bg-cyan-500/20 text-cyan-400 border-cyan-500/40",
     icon: Cpu,
     deliverables: [
-      { name: "Sub-0.5s Trilingual RAG Directory Search Engine", completed: true, date: "Oct 2026" },
-      { name: "Telecom Voice Normalizer with Singlish/Tanglish Acoustic Rules", completed: true, date: "Oct 2026" },
-      { name: "Automated SLT QA Evaluator (Greeting, Hold-Time, CSAT Ending)", completed: true, date: "Oct 2026" },
-      { name: "Deterministic Fault Triage & Instant Trouble Ticket Engine", completed: true, date: "Oct 2026" },
-      { name: "Live Clarity CRM / GB Portal Direct API Webhook Connector", completed: false, date: "In Progress (Sprint 8)" }
+      { name: "Fast Trilingual Directory Search Engine", completed: true, date: "Oct 2026" },
+      { name: "Speech Tool for Singlish & Local Accents", completed: true, date: "Oct 2026" },
+      { name: "Automated SLT Call Quality Scorer", completed: false, date: "In Progress" },
+      { name: "Step-by-Step Fault Triage & Ticket Creator", completed: false, date: "In Progress" },
+      { name: "Direct Connection to Clarity CRM & GB Portal", completed: false, date: "Scheduled Sprint 8" }
     ],
-    notes: "92% complete. Core Next.js copilot is operational. Finalizing CRM bi-directional sync."
+    notes: "50% complete. Search engine and speech tools are ready; fault triage and CRM sync are under active development."
   },
   {
     id: "testing",
-    name: "4. Quality Assurance & Validation",
-    percentage: 85,
-    status: "In Progress",
-    statusColor: "bg-blue-500/20 text-blue-400 border-blue-500/40",
+    name: "4. Quality Assurance & Testing",
+    percentage: 0,
+    status: "Not Started",
+    statusColor: "bg-amber-500/20 text-amber-300 border-amber-500/40",
     icon: ShieldCheck,
     deliverables: [
-      { name: "Automated Unit & Triage Matrix Regression Test Suite", completed: true, date: "Oct 2026" },
-      { name: "Acoustic Speech-to-Text Stress-Tests in Ambient Call Center Noise", completed: true, date: "Oct 2026" },
-      { name: "Official SLT Quality Criteria Verification Engine Validation", completed: true, date: "Oct 2026" },
-      { name: "Field Pilot with 50 Tier-1 Call Center Agents", completed: false, date: "Scheduled Nov 01" }
+      { name: "Automated Tests for Search & Fault Troubleshooting", completed: false, date: "Pending Dev" },
+      { name: "Speech Testing in Noisy Call Center Floors", completed: false, date: "Scheduled" },
+      { name: "SLT Call Quality Standards Verification", completed: false, date: "Scheduled" },
+      { name: "Live Field Pilot with 50 Call Center Agents", completed: false, date: "Scheduled Nov 2026" }
     ],
-    notes: "85% complete. Achieved 99.4% intent triage accuracy across 450 simulated customer calls."
+    notes: "Testing has not started yet. Structured QA and agent pilot trials will begin once development stabilizes."
   }
 ];
 
-// KEY ACHIEVEMENTS
+// KEY ACHIEVEMENTS & DELIVERED MODULES
 const ACHIEVEMENTS = [
   {
     id: 1,
-    title: "Trilingual Telecom Speech Normalizer",
-    category: "Speech AI & NLP",
-    date: "Completed • Oct 2026",
-    metric: "99.4% Phonetic Accuracy",
-    desc: "Overcame Sri Lankan English, Singlish, and dialect acoustic variances by engineering a custom acoustic normalizer that converts verbal phrases into standardized telecom keywords.",
+    title: "Trilingual Speech Normalizer",
+    category: "Speech AI & Language",
+    scope: "Core Module • In Dev",
+    badge: "Trilingual Voice",
+    moduleType: "Speech Normalizer",
     icon: Mic,
     color: "from-cyan-500 to-blue-600",
+    desc: "A smart voice tool that understands Singlish, Tamil, and English spoken by customers in noisy call centers, converting spoken words into standard telecom terms.",
     highlights: [
-      "Custom phonetic rules for Sinhala, Tamil & English",
-      "Singlish transliteration engine ('PON light eka off' -> Optical LOS)",
-      "Zero latency acoustic token preprocessing"
+      "Understands Sinhala, Tamil, and English accents clearly",
+      "Converts Singlish phrases (e.g. 'PON light off' becomes Optical LOS)",
+      "Filters out background room noise from the call center floor",
+      "Processes speech in real time with zero delay during calls"
+    ],
+    specs: [
+      { value: "3 Languages", label: "Sinhala • Tamil • English" },
+      { value: "4,200+ Words", label: "Telecom Words Mapped" },
+      { value: "Real-Time", label: "Instant Speech Processing" }
     ]
   },
   {
     id: 2,
-    title: "Sub-Second Intelligent Directory Search",
-    category: "Information Retrieval",
-    date: "Completed • Oct 2026",
-    metric: "< 0.42s Mean Query Latency",
-    desc: "Replaced 430+ clunky legacy PDF manuals and dispersed RTO sheets with a unified semantic vector database, enabling instant branch extension lookups with zero hold time.",
+    title: "Fast Intelligent Directory Search",
+    category: "Search & Knowledge Base",
+    scope: "Core Module • In Dev",
+    badge: "Smart Search",
+    moduleType: "Directory Search",
     icon: Search,
     color: "from-blue-600 to-indigo-600",
+    desc: "Replaced static PDF manuals and scattered spreadsheets with an automated database that lets agents search contacts in less than a second.",
     highlights: [
-      "Over 28,500 internal telephone directory records indexed",
-      "Instant query resolution in Sinhala, English, and Tamil",
-      "Eliminates average 45-second manual PDF scroll time"
+      "Over 28,500 internal staff and department contacts indexed",
+      "Converts static PDF documents into fast searchable data",
+      "Finds contacts using natural questions in Sinhala, Tamil, or English",
+      "In-memory cache keeps search fast even during peak call hours"
+    ],
+    specs: [
+      { value: "28,500+", label: "Directory Records" },
+      { value: "Vector DB", label: "Fast Database Search" },
+      { value: "< 0.5s", label: "Instant Search Speed" }
     ]
   },
   {
     id: 3,
-    title: "Deterministic Fault Triage & Instant TT",
-    category: "Operations Automation",
-    date: "Completed • Oct 2026",
-    metric: "80% TT Drafting Time Saved",
-    desc: "Automated complex technical triage across Fiber Voice, PON, LOS red LED, gaming latency, and bill reloads. Generates fully formatted Trouble Tickets ready for MDF / Maintenance dispatch.",
+    title: "Fault Troubleshooting & Quick Tickets",
+    category: "Troubleshooting & CRM",
+    scope: "Core Module • In Dev",
+    badge: "Fault Triage",
+    moduleType: "Decision Helper",
     icon: Zap,
     color: "from-emerald-500 to-teal-600",
+    desc: "Guides agents step-by-step through Fiber Voice, Broadband, and IPTV faults, finding the exact issue and creating a ready-to-dispatch Trouble Ticket.",
     highlights: [
-      "Auto-detects MDF vs Area-Maintenance fault boundaries",
-      "Includes customer account, symptom code, and resolution steps",
-      "One-click formatted copy button for legacy CRM insertion"
+      "Step-by-step guidance for 36 common fiber and broadband faults",
+      "Automatically identifies if fault is at MDF or Area Maintenance",
+      "Creates ready-to-copy Trouble Tickets for the CRM in 1 click",
+      "Prevents typing mistakes and wrong technician dispatches"
+    ],
+    specs: [
+      { value: "36 Guides", label: "Fault Troubleshooting Flows" },
+      { value: "MDF vs MTCE", label: "Automatic Fault Location" },
+      { value: "1-Click TT", label: "Ready for CRM Entry" }
     ]
   },
   {
     id: 4,
-    title: "Real-Time Official SLT QA Scoring",
+    title: "Real-Time SLT Call Quality Scoring",
     category: "Quality Assurance",
-    date: "Completed • Oct 2026",
-    metric: "100% QA Audit Coverage",
-    desc: "Built-in compliance analyzer that inspects live call transcripts against official SLT Quality Standards (Greeting, Respectful Sir/Madam, 45s Hold Threshold, and IVR C-Sat announcement).",
+    scope: "Core Module • In Dev",
+    badge: "Call Quality",
+    moduleType: "Quality Checker",
     icon: Award,
     color: "from-amber-500 to-orange-600",
+    desc: "Listens to live calls and checks them against official SLT quality standards, giving agents helpful reminders on screen and summary reports for supervisors.",
     highlights: [
-      "Live score gauge with real-time feedback",
-      "Automatic detection of courtesy statements and apologies",
-      "Manager audit dashboard for coaching and trend tracking"
+      "Checks opening greetings in Sinhala, Tamil, and English",
+      "Warns agents if customer hold time passes 30s or 45s",
+      "Checks for polite phrases, apologies, and closing surveys",
+      "Coaching view helps supervisors track agent performance"
+    ],
+    specs: [
+      { value: "5 Standards", label: "Official SLT Rules" },
+      { value: "Trilingual", label: "Greeting Verification" },
+      { value: "45s Alert", label: "Hold-Time Reminder" }
     ]
   }
 ];
@@ -198,131 +187,248 @@ const ACHIEVEMENTS = [
 const RISKS = [
   {
     id: 1,
-    title: "GPU Inference Availability & Peak Concurrency",
-    category: "Infrastructure",
+    title: "File-Based Knowledge Hub & Database Setup",
+    category: "Knowledge Base",
+    scope: "Primary Challenge • 1212 Call Center",
+    badge: "Knowledge Base",
+    moduleType: "Database Restructuring",
     severity: "High",
     severityClass: "bg-rose-500/20 text-rose-400 border-rose-500/40",
-    impact: "High",
-    probability: "Medium",
-    blocker: "Peak storm/monsoon events trigger 1,200+ concurrent inbound calls, risking LLM token rate limits and query latency spikes.",
-    mitigation: "Engineered local Tier-1 memory cache for the top 300 frequent directory queries, plus automated tiered fallback to Gemini 2.5 Flash-Lite with stream buffering.",
-    status: "Mitigated & Tested",
-    icon: Server
+    impact: "Critical",
+    probability: "High",
+    status: "In Active Development",
+    icon: FileText,
+    color: "from-rose-500 to-amber-600",
+    desc: "Our biggest challenge: the Knowledge Hub is currently stored in PDF files. Because the AI cannot read raw PDF files quickly during live calls, we must check every item and turn it into a fast database for the 1212 Contact Center.",
+    highlights: [
+      "Checking and structuring each Knowledge Hub document item-by-item",
+      "Moving from static PDF files to a fast, searchable database",
+      "Removing file-reading delays so the AI answers immediately",
+      "Focused strictly on 1212 Contact Center operations (Knowledge Hub data source)"
+    ],
+    specs: [
+      { value: "Item-by-Item", label: "Careful Data Verification" },
+      { value: "Zero Files", label: "Fast Database System" },
+      { value: "1212 Only", label: "Contact Center Scope" }
+    ]
   },
   {
     id: 2,
-    title: "Data Fragmentation across 14 Regional Telecom Offices",
-    category: "Data Integrity",
-    severity: "Medium",
-    severityClass: "bg-amber-500/20 text-amber-300 border-amber-500/40",
-    impact: "Medium",
+    title: "Singlish & Sri Lankan Accent Recognition",
+    category: "Voice Recognition",
+    scope: "Speech AI • Core Focus",
+    badge: "Local Accents",
+    moduleType: "Voice Normalizer",
+    severity: "High",
+    severityClass: "bg-rose-500/20 text-rose-400 border-rose-500/40",
+    impact: "High",
     probability: "High",
-    blocker: "Regional offices (Kandy, Galle, Kurunegala, Jaffna) maintain ad-hoc local extension updates on disconnected spreadsheets.",
-    mitigation: "Built an automated ETL synchronization script with semantic deduplication, paired with an Admin Governance portal requiring monthly RTO supervisor re-verification.",
-    status: "In Progress (90%)",
-    icon: Database
+    status: "Model Tuning Active",
+    icon: Mic,
+    color: "from-amber-500 to-rose-600",
+    desc: "Callers and agents speak in Singlish or English with a local accent. Standard speech tools misunderstand these phrases and SLT technical words (like PON, LOS, MDF), so we must train the AI specifically on our language.",
+    highlights: [
+      "Custom voice rules tuned for local Singlish and Sri Lankan English",
+      "Maps local words directly to technical faults (e.g. 'PON light off' to Optical LOS)",
+      "Trained on 4,200+ SLT telecom terms and abbreviations",
+      "Cleans up speech text in real time to prevent misunderstandings"
+    ],
+    specs: [
+      { value: "3 Languages", label: "Sinhala • Tamil • English" },
+      { value: "4,200+ Words", label: "Telecom Words Trained" },
+      { value: "Real-Time", label: "Instant Text Cleaning" }
+    ]
   },
   {
     id: 3,
-    title: "Acoustic Noise in Dense Call Center Environments",
-    category: "Speech AI",
+    title: "Need for Multiple Retraining Cycles in Testing",
+    category: "Testing & Fine-Tuning",
+    scope: "Testing Workflow",
+    badge: "Retraining Cycles",
+    moduleType: "Continuous Fine-Tuning",
+    severity: "Medium",
+    severityClass: "bg-amber-500/20 text-amber-300 border-amber-500/40",
+    impact: "High",
+    probability: "High",
+    status: "Framework In Place",
+    icon: Brain,
+    color: "from-purple-500 to-indigo-600",
+    desc: "When testing with real calls, new customer phrases, uncommon accents, and unfamiliar words will appear. We need to retrain and fine-tune the AI model multiple times to improve its accuracy.",
+    highlights: [
+      "Logs customer phrases that the AI could not understand during test calls",
+      "Fast retraining process to update AI language models regularly",
+      "Automatic testing to make sure new training does not break existing features",
+      "Sprint-based retraining planned before rolling out to 50 agents"
+    ],
+    specs: [
+      { value: "Multi-Pass", label: "Regular Retraining Cycles" },
+      { value: "Issue Log", label: "Tracks Unrecognized Words" },
+      { value: "Safe Updates", label: "Protects Tested Features" }
+    ]
+  },
+  {
+    id: 4,
+    title: "Room Noise & Missed Call Quality Points",
+    category: "Quality Assurance",
+    scope: "Call Scoring",
+    badge: "Quality Evaluation",
+    moduleType: "Noise & Quality Filter",
     severity: "High",
     severityClass: "bg-rose-500/20 text-rose-400 border-rose-500/40",
     impact: "High",
     probability: "Medium",
-    blocker: "Background chatter from neighboring agent booths occasionally leaked into microphone STT streams, generating noisy transcript tokens.",
-    mitigation: "Implemented dual-channel directional acoustic filtering and trained the Telecom Voice Normalizer with contextual intent weighting to ignore conversational bleed.",
-    status: "Resolved",
-    icon: Mic
+    status: "Filter Optimization",
+    icon: Award,
+    color: "from-cyan-500 to-blue-600",
+    desc: "During live call evaluation, background noise from neighboring agents and speech variations can cause the AI to miss required greetings, polite words, or closing surveys.",
+    highlights: [
+      "Noise filtering removes background chatter from the call center floor",
+      "Smart matching recognizes greetings even if the agent words it slightly differently",
+      "Watchdog checks ensure polite words and hold-time apologies are counted",
+      "Supervisor screen lets managers easily review and adjust scores if needed"
+    ],
+    specs: [
+      { value: "5 Standards", label: "Official SLT Rules" },
+      { value: "Noise Filter", label: "Cuts Floor Chatter" },
+      { value: "Smart Match", label: "Catches Greeting Variations" }
+    ]
   },
   {
-    id: 4,
-    title: "Agent Cultural Transition & Legacy System Reliance",
-    category: "Change Management",
-    severity: "Low",
-    severityClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40",
-    impact: "Medium",
-    probability: "Low",
-    blocker: "Senior agents accustomed to manual keyword searches over 10+ years may hesitate to rely on AI-prompted suggestions.",
-    mitigation: "Crafted a non-intrusive copilot sidebar with zero mandatory clicks, one-click keyboard shortcuts, and gamified QA improvement stats that benefit agents' bonus metrics.",
-    status: "Training Active",
-    icon: Users
+    id: 5,
+    title: "Fast Server Infrastructure with Zero Buffering",
+    category: "Server Infrastructure",
+    scope: "Contact Center Scale",
+    badge: "Zero Buffering",
+    moduleType: "High-Speed Server Setup",
+    severity: "High",
+    severityClass: "bg-rose-500/20 text-rose-400 border-rose-500/40",
+    impact: "Critical",
+    probability: "Medium",
+    status: "Infrastructure Scaling",
+    icon: Server,
+    color: "from-emerald-500 to-teal-600",
+    desc: "When hundreds of contact center agents use the copilot at the same time, normal servers lag and buffer. We need fast, reliable server infrastructure with memory caching so agents get answers without any delay.",
+    highlights: [
+      "Fast server setup designed to support many active agents at the same time",
+      "In-memory cache gives instant answers to common questions without API lag",
+      "Streaming display prevents agent screens from freezing or buffering",
+      "Sized specifically to match 1212 Contact Center peak call volumes"
+    ],
+    specs: [
+      { value: "Zero Buffer", label: "No Lagging on Screens" },
+      { value: "Multi-Agent", label: "Supports High Concurrency" },
+      { value: "< 0.5s", label: "Instant Answer Speed" }
+    ]
   }
 ];
 
 // NEXT STEPS & ROADMAP
 const ROADMAP_STEPS = [
   {
-    phase: "Phase 1: Field Pilot Trial",
-    timeline: "Nov 01 - Nov 15, 2026",
-    status: "Upcoming (Next Week)",
+    phase: "Phase 1: Real Call Listening & AI Training",
+    timeline: "Immediate Next Step",
+    status: "Priority Focus",
     statusBadge: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40",
-    focus: "50-Agent Live Deployment",
+    focus: "Live Officer Call Audio",
     deliverables: [
-      "Deploy Smart PEARL Copilot to 50 selected Tier-1 agents across Colombo & Welikada centers",
-      "Monitor real-time Average Handling Time (AHT) drop against 4.2-minute baseline",
-      "Daily telemetry capture on trilingual phonetic correction accuracy"
+      "Listen to real calls handled by contact center officers to capture everyday conversation patterns",
+      "Train and fine-tune the AI speech model on natural Sinhala, Tamil, and English accents",
+      "Improve the AI's understanding of customer phrasing and SLT technical words",
+      "Build a clean training dataset from real call center audio recordings"
     ],
-    targetMetric: "Target: 30% AHT Reduction in Week 1"
+    targetMetric: "Real Audio Training"
   },
   {
-    phase: "Phase 2: Deep CRM & Billing Integration",
-    timeline: "Nov 16 - Dec 10, 2026",
-    status: "Scheduled",
-    statusBadge: "bg-blue-500/20 text-blue-300 border-blue-500/40",
-    focus: "Enterprise Systems Interlock",
-    deliverables: [
-      "Bi-directional REST API integration with SLT Clarity CRM and GB Portal",
-      "Automated Trouble Ticket injection into NOC queues without manual copy-paste",
-      "Prepaid & Postpaid payment gateway real-time transaction reconciliation"
-    ],
-    targetMetric: "Target: 100% Automated Ticket Dispatch"
-  },
-  {
-    phase: "Phase 3: Predictive Outage Correlation",
-    timeline: "Dec 11 - Jan 15, 2027",
+    phase: "Phase 2: Fault Analysis & Reporting Verification",
+    timeline: "Following Model Training",
     status: "Planned",
-    statusBadge: "bg-indigo-500/20 text-indigo-300 border-indigo-500/40",
-    focus: "Proactive Incident Prevention",
+    statusBadge: "bg-blue-500/20 text-blue-300 border-blue-500/40",
+    focus: "Accurate Issue Diagnosis",
     deliverables: [
-      "Clustering algorithm to detect localized fiber breaks when 5+ LOS alarms trigger in one MSAN area",
-      "Automatic IVR deflection: notify incoming callers of known area outages before reaching agent",
-      "SMS broadcast dispatch to affected FTTH customer groups"
+      "Analyze customer problem descriptions to check if the AI correctly identifies the exact fault",
+      "Verify whether the AI accurately determines the fault boundary (MDF vs Area Maintenance)",
+      "Ensure the AI generates correct Trouble Ticket summaries without errors or missed details",
+      "Review sample troubleshooting recommendations against senior officer judgment"
     ],
-    targetMetric: "Target: 25% Reduction in Inbound Call Volumes"
+    targetMetric: "Accurate Fault Reporting"
   },
   {
-    phase: "Phase 4: Island-wide Production Scaling",
-    timeline: "Q1 2027 (Jan - Mar)",
-    status: "Strategic Target",
+    phase: "Phase 3: Limited Officer Pilot & Bug Fixing",
+    timeline: "Post-Development Trial",
+    status: "Controlled Testing",
     statusBadge: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
-    focus: "National Rollout",
+    focus: "Small-Scale Real Usage",
     deliverables: [
-      "Full rollout to 1,000+ active contact center agent seats across Sri Lanka",
-      "Integration with SLT Self-Care Mobile App and WhatsApp AI assistant",
-      "Executive real-time performance dashboard for Senior Management & CTO Office"
+      "Deploy the working copilot to a small, limited group of contact center officers",
+      "Test real-time performance, response speed, and usability during actual customer calls",
+      "Gather direct daily feedback from officers on missing knowledge or incorrect suggestions",
+      "Continuously fix bugs, improve database answers, and polish the assistant on the go"
     ],
-    targetMetric: "Target: Island-wide Enterprise Standard"
+    targetMetric: "Iterative Improvement"
   }
 ];
 
-// FAQS & BOT SIMULATOR
-const FAQS = [
+// CONCLUSION SUMMARY POINTS (SLIDES 01 TO 06 HIGHLIGHTS)
+const CONCLUSION_POINTS = [
   {
-    q: "How does Smart PEARL handle mixed Singlish queries like 'PON light eka off wela'?",
-    a: "Our proprietary Telecom Voice Normalizer uses custom acoustic phonetics and grammar trees. It recognizes Sinhala-English hybrid vocabulary, matches it to 'Optical Loss of Signal / Fiber Cable Defect', and triggers the exact MDF/Area Maintenance triage SOP."
+    slideNum: "Slide 01",
+    label: "Project Purpose",
+    title: "1212 Contact Center Focus",
+    desc: "Built exclusively to assist 1212 agents, eliminating customer hold times from 45s down to under 2 seconds.",
+    icon: Target,
+    borderHover: "hover:border-cyan-400/50",
+    badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+    iconColor: "text-cyan-400"
   },
   {
-    q: "How does the sub-second retrieval work without leaking customer data?",
-    a: "All directory embeddings and search indices reside inside SLT's secure private cloud infrastructure. Data is encrypted in transit and at rest, and no customer personally identifiable information (PII) is exported to external public model checkpoints."
+    slideNum: "Slide 02",
+    label: "Knowledge Base",
+    title: "Vector DB from PDF Files",
+    desc: "Transformed static PDF guides into a fast AI search database. Contact center only; RTO offices remain separate.",
+    icon: FileText,
+    borderHover: "hover:border-blue-400/50",
+    badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+    iconColor: "text-blue-400"
   },
   {
-    q: "What impact does automated QA scoring have on agent evaluation?",
-    a: "Traditional QA manually audits only 2-3% of total recorded calls. Smart PEARL audits 100% of calls in real time against official SLT greeting, holding, and courtesy standards, providing constructive feedback and objective scoring for bonuses."
+    slideNum: "Slide 03",
+    label: "Current Status",
+    title: "50% Development Completed",
+    desc: "Core user interface, speech processing, and search engines are built. Rigorous testing begins next.",
+    icon: CheckCircle2,
+    borderHover: "hover:border-emerald-400/50",
+    badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+    iconColor: "text-emerald-400"
   },
   {
-    q: "Can the system create Trouble Tickets without agent intervention?",
-    a: "The system dynamically drafts the ticket with account, fault code, symptom, and diagnostic results. The agent reviews the pre-populated card with a single glance and clicks 'Instant Copy & Dispatch', maintaining human oversight with zero typing delay."
+    slideNum: "Slide 04",
+    label: "Capabilities",
+    title: "Trilingual Voice & Fast Triage",
+    desc: "Understands Sinhala, Tamil, and English accents, with live fault categorization and automated QA scoring.",
+    icon: Zap,
+    borderHover: "hover:border-amber-400/50",
+    badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+    iconColor: "text-amber-400"
+  },
+  {
+    slideNum: "Slide 05",
+    label: "Key Challenges",
+    title: "Accents, Retraining & Speed",
+    desc: "Mastering Sri Lankan accents, recurring model retraining, and zero-buffer high-speed server performance.",
+    icon: AlertTriangle,
+    borderHover: "hover:border-rose-400/50",
+    badgeColor: "bg-rose-500/20 text-rose-300 border-rose-500/30",
+    iconColor: "text-rose-400"
+  },
+  {
+    slideNum: "Slide 06",
+    label: "Next Roadmap",
+    title: "Call Listening & Limited Pilot",
+    desc: "Training with real officer calls, verifying fault reporting, and launching a pilot with a small officer group.",
+    icon: Calendar,
+    borderHover: "hover:border-purple-400/50",
+    badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+    iconColor: "text-purple-400"
   }
 ];
 
@@ -335,14 +441,11 @@ export default function App() {
   const [isDark, setIsDark] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isAutoPlay, setIsAutoPlay] = useState(false);
-  const [slide2Tab, setSlide2Tab] = useState<'problem' | 'solution' | 'stakeholders'>('problem');
-  const [stakeholderIdx, setStakeholderIdx] = useState<number>(0);
+  const [slide2Tab, setSlide2Tab] = useState<'problem' | 'solution'>('problem');
   const [activeWorkflowTab, setActiveWorkflowTab] = useState<'planning' | 'designing' | 'development' | 'testing'>('development');
   const [selectedAchievement, setSelectedAchievement] = useState<number>(1);
   const [activeRiskIdx, setActiveRiskIdx] = useState<number>(0);
   const [activeRoadmapIdx, setActiveRoadmapIdx] = useState<number>(0);
-  const [slide7Tab, setSlide7Tab] = useState<'takeaways' | 'faq'>('takeaways');
-  const [activeFaqIdx, setActiveFaqIdx] = useState<number>(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [questionInput, setQuestionInput] = useState('');
   const [questionSubmitted, setQuestionSubmitted] = useState(false);
@@ -426,17 +529,9 @@ export default function App() {
     }
   };
 
-  // CALCULATE OVERALL PROGRESS
-  const overallProgress = useMemo(() => {
-    const total = WORKFLOW_PHASES.reduce((acc, curr) => acc + curr.percentage, 0);
-    return Math.round(total / WORKFLOW_PHASES.length);
-  }, []);
-
   // ACTIVE IN-SLIDE CARD REFERENCES FOR PROJECTOR READABILITY
-  const activeStakeholder = STAKEHOLDERS[stakeholderIdx] || STAKEHOLDERS[0];
   const activeRisk = RISKS[activeRiskIdx] || RISKS[0];
   const activeRoadmap = ROADMAP_STEPS[activeRoadmapIdx] || ROADMAP_STEPS[0];
-  const activeFaq = FAQS[activeFaqIdx] || FAQS[0];
 
   return (
     <div 
@@ -595,7 +690,7 @@ export default function App() {
                   Close (Esc)
                 </button>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3">
                 {SLIDES.map(slide => (
                   <button
                     key={slide.id}
@@ -678,14 +773,14 @@ export default function App() {
                   >
                     <div className="absolute right-0 w-6 h-[2px] bg-white animate-pulse shadow-[0_0_10px_#fff]" />
                     <span className="absolute left-0 -bottom-4 sm:-bottom-5 text-[9px] sm:text-xs text-cyan-400 font-mono tracking-widest uppercase truncate max-w-full">
-                      Neural Copilot • Sub-Second Retrieval • Trilingual Voice Triage
+                      AI Copilot • Fast Directory Search • 3 Languages Supported
                     </span>
                   </motion.div>
                 </div>
 
                 {/* Subtitle / Description */}
                 <p className="text-xs sm:text-base lg:text-lg xl:text-xl text-slate-200 leading-relaxed my-2 sm:my-4 font-normal">
-                  Next-generation AI copilot empowering SLT 1212 Contact Centre staff with sub-second directory lookup, natural language contact discovery, and automated inquiry triage to eliminate customer hold times and slash Average Handling Time (AHT).
+                  A smart AI assistant helping SLT 1212 contact center agents quickly find contacts, answer customer inquiries, and resolve complaints without long customer hold times.
                 </p>
 
                 {/* Presenter / Team Cards */}
@@ -698,7 +793,7 @@ export default function App() {
                       <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate">Project Lead</span>
                     </div>
                     <div className="text-xs sm:text-base lg:text-lg font-bold text-white truncate">Gehan & Dev Squad</div>
-                    <div className="text-[10px] sm:text-xs lg:text-sm text-slate-400 truncate">Lead AI Architects</div>
+                    <div className="text-[10px] sm:text-xs lg:text-sm text-slate-400 truncate">Core AI Team</div>
                   </div>
 
                   <div className={`p-2.5 sm:p-4 rounded-xl border text-left backdrop-blur-md ${
@@ -709,7 +804,7 @@ export default function App() {
                       <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate">Team</span>
                     </div>
                     <div className="text-xs sm:text-base lg:text-lg font-bold text-white truncate">Contact Center Colombo</div>
-                    <div className="text-[10px] sm:text-xs lg:text-sm text-slate-400 truncate">1212 Contact Centre Staff</div>
+                    <div className="text-[10px] sm:text-xs lg:text-sm text-slate-400 truncate">1212 Operations Team</div>
                   </div>
 
                   <div className={`p-2.5 sm:p-4 rounded-xl border text-left backdrop-blur-md ${
@@ -720,7 +815,7 @@ export default function App() {
                       <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider truncate">Review Date</span>
                     </div>
                     <div className="text-xs sm:text-base lg:text-lg font-bold text-white truncate">29/10/2026</div>
-                    <div className="text-[10px] sm:text-xs lg:text-sm text-slate-400 truncate">v2.4 • Field Pilot Ready</div>
+                    <div className="text-[10px] sm:text-xs lg:text-sm text-slate-400 truncate">Phase 2 • 50% Developed</div>
                   </div>
                 </div>
 
@@ -728,19 +823,19 @@ export default function App() {
                 <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                   <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs sm:text-sm font-semibold text-slate-200">
                     <Zap className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                    <span>Sub-0.5s Retrieval</span>
+                    <span>Fast Search (&lt;0.5s)</span>
                   </div>
                   <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs sm:text-sm font-semibold text-slate-200">
                     <Globe className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                    <span>Trilingual STT</span>
+                    <span>3 Languages Supported</span>
                   </div>
                   <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs sm:text-sm font-semibold text-slate-200">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>Official SLT QA</span>
+                    <span>Live Call Quality Check</span>
                   </div>
                   <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs sm:text-sm font-semibold text-slate-200">
                     <Server className="w-3.5 h-3.5 text-purple-400 shrink-0" />
-                    <span>Auto Trouble Ticket</span>
+                    <span>1-Click Trouble Ticket</span>
                   </div>
                 </div>
               </div>
@@ -854,7 +949,7 @@ export default function App() {
                     Slide 02 • Executive Summary & Scope
                   </div>
                   <h2 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight">
-                    Project Overview & Key Stakeholders
+                    Project Overview & Architecture
                   </h2>
                 </div>
 
@@ -882,17 +977,6 @@ export default function App() {
                     <Zap className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
                     <span>02. The Solution</span>
                   </button>
-                  <button
-                    onClick={() => setSlide2Tab('stakeholders')}
-                    className={`px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm lg:text-base font-bold transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
-                      slide2Tab === 'stakeholders'
-                        ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/30'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <Users className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
-                    <span>03. Stakeholders</span>
-                  </button>
                 </div>
               </div>
 
@@ -914,7 +998,7 @@ export default function App() {
                       </div>
                       <div>
                         <span className="text-[10px] sm:text-xs font-bold text-rose-400 uppercase tracking-widest">Pain Point Analysis</span>
-                        <h3 className="text-sm sm:text-lg lg:text-xl font-black text-white">Legacy Contact Center Bottlenecks</h3>
+                        <h3 className="text-sm sm:text-lg lg:text-xl font-black text-white">1212 Contact Center Bottlenecks (Knowledge Hub Scope)</h3>
                       </div>
                     </div>
                     <button
@@ -926,44 +1010,64 @@ export default function App() {
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-4 flex-1 min-h-0">
-                    <div className="p-3 sm:p-4 lg:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-rose-500/40 transition-all shadow-md">
-                      <div className="text-rose-400 font-black text-sm sm:text-base lg:text-xl mb-1 flex items-center gap-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3.5 flex-1 min-h-0 overflow-y-auto pr-1">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-rose-500/40 transition-all shadow-md">
+                      <div className="text-rose-400 font-black text-sm sm:text-base lg:text-lg mb-1 flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0" />
-                        4.2 Min Average Handling Time (AHT)
+                        File-Based Knowledge Hub (Primary Bottleneck)
                       </div>
-                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
-                        Call center agents waste up to 45 seconds per call manually hunting through static PDFs, intranet portals, and fragmented spreadsheets while customers wait on hold.
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        Knowledge Hub is currently stored as static, file-based multi-page PDFs and circulars. AI cannot read raw PDFs on the fly during active 1212 calls; each document must be verified item-by-item and structured into a queryable database without file overhead.
                       </p>
                     </div>
 
-                    <div className="p-3 sm:p-4 lg:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-rose-500/40 transition-all shadow-md">
-                      <div className="text-rose-400 font-black text-sm sm:text-base lg:text-xl mb-1 flex items-center gap-2">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-rose-500/40 transition-all shadow-md">
+                      <div className="text-rose-400 font-black text-sm sm:text-base lg:text-lg mb-1 flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0" />
-                        Singlish & Dialect Acoustic Loss
+                        Singlish & Sri Lankan Accent Disconnect
                       </div>
-                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
-                        Sri Lankan accented English and mixed Singlish phrases like <em>"Router eke PON light off wela"</em> are misunderstood by standard speech engines, forcing repeated clarification.
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        Customers and agents speak in mixed Singlish or Sri Lankan-accented English with localized phrasing. Standard speech engines fail on local accents, requiring specialized phonetic rules to prevent conversational misinterpretation.
                       </p>
                     </div>
 
-                    <div className="p-3 sm:p-4 lg:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-rose-500/40 transition-all shadow-md">
-                      <div className="text-rose-400 font-black text-sm sm:text-base lg:text-xl mb-1 flex items-center gap-2">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-rose-500/40 transition-all shadow-md">
+                      <div className="text-rose-400 font-black text-sm sm:text-base lg:text-lg mb-1 flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0" />
-                        Manual Trouble Ticket Misclassification
+                        Domain Telecom Vocabulary Gaps
                       </div>
-                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
-                        Fiber Voice and broadband speed faults are frequently misdirected between Main Distribution Frame (MDF) and Area Maintenance, causing up to 48-hour resolution delays.
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        Telecom-specific technical terms (PON, Optical LOS, MDF, Peering, Area-MTCE) are not understood by standard AI models, requiring custom lexicon training so verbal complaints map directly to technical root causes.
                       </p>
                     </div>
 
-                    <div className="p-3 sm:p-4 lg:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-rose-500/40 transition-all shadow-md">
-                      <div className="text-rose-400 font-black text-sm sm:text-base lg:text-xl mb-1 flex items-center gap-2">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-rose-500/40 transition-all shadow-md">
+                      <div className="text-rose-400 font-black text-sm sm:text-base lg:text-lg mb-1 flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0" />
-                        Only 2% Quality Audit Sampling
+                        Iterative Retraining Cycles in Testing
                       </div>
-                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
-                        Manual QA inspectors sample only 2-3 calls per agent per month, creating huge compliance blindspots on mandatory greetings, 45s hold thresholds, and IVR C-Sat closing.
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        Testing with live call center scenarios reveals unforeseen dialect edge cases and localized phrasing, requiring the AI model to undergo multiple retraining and fine-tuning iterations to stabilize.
+                      </p>
+                    </div>
+
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-rose-500/40 transition-all shadow-md">
+                      <div className="text-rose-400 font-black text-sm sm:text-base lg:text-lg mb-1 flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0" />
+                        Voice Bleed & Missed QA Scoring Points
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        During live automated call evaluation, ambient call center noise and audio nuances sometimes prevent the AI from automatically detecting mandatory SLT greeting, hold-time courtesy, and CSAT closing points.
+                      </p>
+                    </div>
+
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-rose-500/40 transition-all shadow-md">
+                      <div className="text-rose-400 font-black text-sm sm:text-base lg:text-lg mb-1 flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-rose-400 shrink-0" />
+                        High Concurrency Server Speed (Zero Buffer)
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        Supporting a large volume of concurrent 1212 contact center agents requires high-throughput, low-latency GPU server infrastructure to ensure the AI responds instantly with zero buffering or lag.
                       </p>
                     </div>
                   </div>
@@ -988,144 +1092,79 @@ export default function App() {
                       </div>
                       <div>
                         <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest">Architectural Innovation</span>
-                        <h3 className="text-sm sm:text-lg lg:text-xl font-black text-white">The Smart PEARL AI Solution</h3>
+                        <h3 className="text-sm sm:text-lg lg:text-xl font-black text-white">The Smart PEARL AI Solution (1212 Scope)</h3>
                       </div>
                     </div>
                     <button
-                      onClick={() => setSlide2Tab('stakeholders')}
-                      className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-500/20 border border-blue-400/40 text-blue-300 text-xs sm:text-sm font-bold hover:bg-blue-500/30 transition-all cursor-pointer shrink-0"
+                      onClick={() => setSlide2Tab('problem')}
+                      className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-rose-500/20 border border-rose-400/40 text-rose-300 text-xs sm:text-sm font-bold hover:bg-rose-500/30 transition-all cursor-pointer shrink-0"
                     >
-                      <span>View Stakeholders</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowLeft className="w-4 h-4" />
+                      <span>Back to Problem</span>
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-4 flex-1 min-h-0">
-                    <div className="p-3 sm:p-4 lg:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-cyan-400/40 transition-all shadow-md">
-                      <div className="text-[#00F0FF] font-black text-sm sm:text-base lg:text-xl mb-1 flex items-center gap-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3.5 flex-1 min-h-0 overflow-y-auto pr-1">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-cyan-400/40 transition-all shadow-md">
+                      <div className="text-[#00F0FF] font-black text-sm sm:text-base lg:text-lg mb-1 flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0" />
-                        Sub-0.5s Semantic Retrieval
+                        Itemized Knowledge Hub Vector DB
                       </div>
-                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
-                        Over 28,500+ internal directory records, departments, and regional offices vectorized into high-speed memory for instantaneous zero-hold lookup in Sinhala, English, and Tamil.
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        Pre-extracts and structures static Knowledge Hub PDF circulars item-by-item into a granular vector database, delivering instantaneous search responses without runtime PDF reading.
                       </p>
                     </div>
 
-                    <div className="p-3 sm:p-4 lg:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-cyan-400/40 transition-all shadow-md">
-                      <div className="text-[#00F0FF] font-black text-sm sm:text-base lg:text-xl mb-1 flex items-center gap-2">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-cyan-400/40 transition-all shadow-md">
+                      <div className="text-[#00F0FF] font-black text-sm sm:text-base lg:text-lg mb-1 flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0" />
-                        Telecom Voice Phonetic Normalizer
+                        Acoustic-Phonetic Speech Normalizer
                       </div>
-                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
-                        Proprietary phonetic rules instantly map verbal phrases into clean technical terms (e.g., <em>"LOS red light"</em> -&gt; Optical Fiber Cut, dispatch direct to Area-MTCE).
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        Proprietary phonetic rules and dialect mapping tailored to Sri Lankan accents and Singlish phrases, standardizing customer speech into clean technical tokens.
                       </p>
                     </div>
 
-                    <div className="p-3 sm:p-4 lg:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-cyan-400/40 transition-all shadow-md">
-                      <div className="text-[#00F0FF] font-black text-sm sm:text-base lg:text-xl mb-1 flex items-center gap-2">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-cyan-400/40 transition-all shadow-md">
+                      <div className="text-[#00F0FF] font-black text-sm sm:text-base lg:text-lg mb-1 flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0" />
-                        Deterministic Fault Triage & Instant TT
+                        Specialized SLT Telecom Lexicon Model
                       </div>
-                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
-                        Automated decision trees guide agents step-by-step through FTTH Voice, PON, and speed triage, auto-generating 1-click formatted Trouble Tickets without manual typing.
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        Trained domain dictionary mapping 4,200+ telecom terms and fault abbreviations, ensuring instant recognition of issues like <em>"Router PON light off"</em> as Optical LOS.
                       </p>
                     </div>
 
-                    <div className="p-3 sm:p-4 lg:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-cyan-400/40 transition-all shadow-md">
-                      <div className="text-[#00F0FF] font-black text-sm sm:text-base lg:text-xl mb-1 flex items-center gap-2">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-cyan-400/40 transition-all shadow-md">
+                      <div className="text-[#00F0FF] font-black text-sm sm:text-base lg:text-lg mb-1 flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0" />
-                        100% Real-Time Official SLT QA Scoring
+                        Iterative Model Fine-Tuning Pipeline
                       </div>
-                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
-                        Continuously grades 100% of calls against official SLT standards (Trilingual Greeting, Sir/Madam courtesy, 45s Hold threshold, and IVR C-Sat announcement) with real-time feedback.
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        Systematic feedback and retraining loop capturing test-phase dialect and vocabulary anomalies to rapidly fine-tune model weights across agile testing iterations.
+                      </p>
+                    </div>
+
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-cyan-400/40 transition-all shadow-md">
+                      <div className="text-[#00F0FF] font-black text-sm sm:text-base lg:text-lg mb-1 flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0" />
+                        Multi-Channel Acoustic QA Evaluator
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        Directional noise-filtering and contextual semantic matching designed to reliably score all official SLT rubrics (greetings, courtesies, 45s hold threshold) despite floor chatter.
+                      </p>
+                    </div>
+
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-center hover:border-cyan-400/40 transition-all shadow-md">
+                      <div className="text-[#00F0FF] font-black text-sm sm:text-base lg:text-lg mb-1 flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0" />
+                        Low-Latency Scalable Server Infrastructure
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                        High-throughput GPU inference server paired with local in-memory caching to deliver zero-buffering, sub-second copilot assistance across all active 1212 agent desks.
                       </p>
                     </div>
                   </div>
-                </motion.div>
-              )}
-
-              {/* CARD 3: STAKEHOLDERS (INTERACTIVE SPOTLIGHT) */}
-              {slide2Tab === 'stakeholders' && (
-                <motion.div
-                  key="tab-stakeholders"
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  className={`flex-1 min-h-0 flex flex-col justify-between p-3 sm:p-5 lg:p-6 rounded-2xl border backdrop-blur-2xl relative overflow-hidden ${
-                    isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200'
-                  }`}
-                >
-                  {/* Stakeholder Selector Pills */}
-                  <div className="flex items-center justify-between gap-3 shrink-0 pb-2.5 border-b border-white/10">
-                    <div className="flex items-center gap-2 overflow-x-auto scrollbar-none">
-                      {STAKEHOLDERS.map((stk, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setStakeholderIdx(idx)}
-                          className={`px-3 sm:px-4 py-1.5 rounded-xl text-xs sm:text-sm lg:text-base font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
-                            stakeholderIdx === idx
-                              ? 'bg-cyan-500 text-slate-900 shadow-md shadow-cyan-500/20'
-                              : 'bg-white/5 border border-white/10 text-slate-300 hover:text-white'
-                          }`}
-                        >
-                          0{idx + 1}. {stk.role.split(' ')[0]}
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* Step buttons */}
-                    <div className="flex items-center gap-2 shrink-0">
-                      <button
-                        onClick={() => setStakeholderIdx(prev => (prev > 0 ? prev - 1 : STAKEHOLDERS.length - 1))}
-                        className="p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
-                        title="Previous Stakeholder"
-                      >
-                        <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </button>
-                      <span className="text-xs sm:text-sm font-mono font-bold text-slate-400">
-                        {stakeholderIdx + 1}/{STAKEHOLDERS.length}
-                      </span>
-                      <button
-                        onClick={() => setStakeholderIdx(prev => (prev < STAKEHOLDERS.length - 1 ? prev + 1 : 0))}
-                        className="p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
-                        title="Next Stakeholder"
-                      >
-                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Active Stakeholder Spotlight */}
-                  {(() => {
-                    const StkIcon = activeStakeholder.icon;
-                    return (
-                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-center flex-1 min-h-0 pt-2">
-                        <div className="lg:col-span-4 flex flex-col items-center text-center p-3 sm:p-5 rounded-2xl bg-white/5 border border-white/10 shadow-lg">
-                          <div className={`p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r ${activeStakeholder.color} text-white mb-2 shadow-xl`}>
-                            <StkIcon className="w-8 h-8 sm:w-10 sm:h-10 lg:w-14 lg:h-14" />
-                          </div>
-                          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 mb-1.5">
-                            {activeStakeholder.badge}
-                          </span>
-                          <h4 className="text-base sm:text-xl lg:text-2xl font-black text-white">{activeStakeholder.name}</h4>
-                          <p className="text-xs sm:text-sm text-cyan-200 mt-0.5 font-semibold">{activeStakeholder.department}</p>
-                        </div>
-
-                        <div className="lg:col-span-8 flex flex-col justify-center flex-1 min-h-0 gap-2 sm:gap-3">
-                          <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest">Strategic Contributions & Role</span>
-                          <h4 className="text-base sm:text-xl lg:text-2xl font-extrabold text-white">{activeStakeholder.role}</h4>
-                          <div className="space-y-1.5 sm:space-y-2.5">
-                            {activeStakeholder.contributions.map((c, i) => (
-                              <div key={i} className="p-2.5 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2.5">
-                                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 shrink-0 mt-0.5" />
-                                <span className="text-xs sm:text-sm lg:text-base text-slate-100 font-medium leading-relaxed">{c}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })()}
                 </motion.div>
               )}
             </motion.div>
@@ -1145,24 +1184,37 @@ export default function App() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 shrink-0 mb-2">
                 <div>
                   <div className="text-xs sm:text-sm lg:text-base font-bold uppercase tracking-wider text-cyan-400">
-                    Slide 03 • Project Lifecycle & Milestones
+                    Slide 03 • Project Progress & Status
                   </div>
                   <h2 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight">
-                    Progress Summary & Workflow Tracking
+                    Progress Summary & Current Status
                   </h2>
                 </div>
 
-                {/* Overall Score Banner */}
-                <div className={`flex items-center gap-3 px-3.5 py-1.5 sm:py-2 rounded-2xl border backdrop-blur-xl shrink-0 self-start sm:self-auto ${
-                  isDark ? 'bg-cyan-950/30 border-cyan-500/40' : 'bg-cyan-50 border-cyan-200 shadow-sm'
-                }`}>
-                  <div>
-                    <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-cyan-400">Total Completion</div>
-                    <div className="text-xl sm:text-3xl lg:text-4xl font-black text-white">{overallProgress}%</div>
-                  </div>
-                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border-2 sm:border-3 border-cyan-400/20 border-t-cyan-400 flex items-center justify-center font-bold text-xs text-cyan-300 animate-spin" style={{ animationDuration: '8s' }}>
-                    v2.4
-                  </div>
+                {/* Stage Step Buttons */}
+                <div className="flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
+                  <button
+                    onClick={() => {
+                      const idx = WORKFLOW_PHASES.findIndex(p => p.id === activeWorkflowTab);
+                      const prevIdx = idx > 0 ? idx - 1 : WORKFLOW_PHASES.length - 1;
+                      setActiveWorkflowTab(WORKFLOW_PHASES[prevIdx].id as 'planning' | 'designing' | 'development' | 'testing');
+                    }}
+                    className="p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 transition-all cursor-pointer"
+                    title="Previous Stage"
+                  >
+                    <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      const idx = WORKFLOW_PHASES.findIndex(p => p.id === activeWorkflowTab);
+                      const nextIdx = idx < WORKFLOW_PHASES.length - 1 ? idx + 1 : 0;
+                      setActiveWorkflowTab(WORKFLOW_PHASES[nextIdx].id as 'planning' | 'designing' | 'development' | 'testing');
+                    }}
+                    className="p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 transition-all cursor-pointer"
+                    title="Next Stage"
+                  >
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </button>
                 </div>
               </div>
 
@@ -1235,7 +1287,7 @@ export default function App() {
                       <div className="lg:col-span-7 space-y-1.5 sm:space-y-2 flex-1 min-h-0">
                         <h4 className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center gap-1.5 mb-1">
                           <ListChecks className="w-4 h-4 text-cyan-400" />
-                          Workstream Deliverables & Outcomes
+                          Key Tasks & Completed Work
                         </h4>
                         {currentPhase.deliverables.map((item, i) => (
                           <div
@@ -1262,22 +1314,22 @@ export default function App() {
                       {/* Right: Notes & Big Stats */}
                       <div className="lg:col-span-5 flex flex-col justify-between gap-2.5 h-full">
                         <div className="p-3 sm:p-4 rounded-xl bg-white/5 border border-white/10">
-                          <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest block mb-1">Stage Executive Summary</span>
+                          <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest block mb-1">Stage Summary</span>
                           <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">{currentPhase.notes}</p>
                         </div>
 
                         <div className="grid grid-cols-3 gap-2">
                           <div className="p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 text-center">
                             <div className="text-lg sm:text-2xl lg:text-3xl font-black text-cyan-400">18</div>
-                            <div className="text-[8px] sm:text-[10px] text-slate-400 uppercase font-bold mt-0.5">Epics Done</div>
+                            <div className="text-[8px] sm:text-[10px] text-slate-400 uppercase font-bold mt-0.5">Features Built</div>
                           </div>
                           <div className="p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 text-center">
-                            <div className="text-lg sm:text-2xl lg:text-3xl font-black text-emerald-400">99.4%</div>
-                            <div className="text-[8px] sm:text-[10px] text-slate-400 uppercase font-bold mt-0.5">Phonetic Rate</div>
+                            <div className="text-lg sm:text-2xl lg:text-3xl font-black text-emerald-400">3</div>
+                            <div className="text-[8px] sm:text-[10px] text-slate-400 uppercase font-bold mt-0.5">Languages Supported</div>
                           </div>
                           <div className="p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 text-center">
-                            <div className="text-lg sm:text-2xl lg:text-3xl font-black text-blue-400">&lt;0.42s</div>
-                            <div className="text-[8px] sm:text-[10px] text-slate-400 uppercase font-bold mt-0.5">Mean Latency</div>
+                            <div className="text-lg sm:text-2xl lg:text-3xl font-black text-blue-400">28.5k+</div>
+                            <div className="text-[8px] sm:text-[10px] text-slate-400 uppercase font-bold mt-0.5">Directory Records</div>
                           </div>
                         </div>
                       </div>
@@ -1302,10 +1354,10 @@ export default function App() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 shrink-0 mb-2">
                 <div>
                   <div className="text-xs sm:text-sm lg:text-base font-bold uppercase tracking-wider text-cyan-400">
-                    Slide 04 • Technical Milestones Delivered
+                    Slide 04 • Key Features Built So Far
                   </div>
                   <h2 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight">
-                    Key Achievements & Breakthroughs
+                    Key Features & Working Modules
                   </h2>
                 </div>
 
@@ -1347,8 +1399,8 @@ export default function App() {
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1">
-                        <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
-                        <span className="text-xs font-bold text-emerald-400">{item.metric}</span>
+                        <Icon className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <span className="text-xs font-bold text-cyan-400">{item.badge}</span>
                       </div>
                       <div className="text-xs sm:text-sm lg:text-base font-bold text-white truncate">{item.title}</div>
                     </button>
@@ -1366,45 +1418,68 @@ export default function App() {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.98 }}
-                    className={`flex-1 min-h-0 flex flex-col justify-between p-3.5 sm:p-5 lg:p-6 rounded-2xl border backdrop-blur-2xl overflow-hidden ${
+                    className={`flex-1 min-h-0 flex flex-col justify-between p-4 sm:p-6 lg:p-7 rounded-2xl border backdrop-blur-2xl overflow-hidden ${
                       isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200 shadow-xl'
                     }`}
                   >
-                    <div className="flex items-center justify-between gap-3 shrink-0 pb-2.5 border-b border-white/10">
-                      <div className="flex items-center gap-3">
-                        <div className={`p-2.5 sm:p-3 rounded-xl bg-gradient-to-r ${active.color} text-white shadow-xl shrink-0`}>
+                    {/* Top Header */}
+                    <div className="flex items-center justify-between gap-3 shrink-0 pb-3 border-b border-white/10">
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <div className={`p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r ${active.color} text-white shadow-xl shrink-0`}>
                           <Icon className="w-6 h-6 sm:w-8 sm:h-8" />
                         </div>
                         <div>
-                          <div className="text-[10px] sm:text-xs text-cyan-400 font-bold uppercase tracking-widest">{active.category} • {active.date}</div>
-                          <h3 className="text-sm sm:text-xl lg:text-2xl font-black text-white mt-0.5 leading-tight">{active.title}</h3>
+                          <div className="text-[10px] sm:text-xs text-cyan-400 font-bold uppercase tracking-widest flex items-center gap-2">
+                            <span>{active.category}</span>
+                            <span className="w-1 h-1 rounded-full bg-cyan-400" />
+                            <span>{active.scope}</span>
+                          </div>
+                          <h3 className="text-base sm:text-xl lg:text-2xl font-black text-white mt-0.5 leading-tight">{active.title}</h3>
                         </div>
                       </div>
 
-                      {/* Verified Metric Badge */}
-                      <div className="px-3.5 py-1.5 sm:py-2 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-center shrink-0">
-                        <div className="text-[8px] sm:text-[10px] uppercase font-bold text-emerald-400 tracking-widest">Verified Target</div>
-                        <div className="text-lg sm:text-2xl lg:text-3xl font-black">{active.metric}</div>
+                      {/* Module Specification Badge */}
+                      <div className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 text-center shrink-0">
+                        <div className="text-[9px] sm:text-[10px] uppercase font-bold text-cyan-400 tracking-wider">Feature Type</div>
+                        <div className="text-sm sm:text-base lg:text-lg font-black text-white">{active.moduleType}</div>
                       </div>
                     </div>
 
-                    <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal py-1.5 sm:py-2">
-                      {active.desc}
-                    </p>
+                    {/* Description Paragraph */}
+                    <div className="p-3.5 sm:p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
+                        {active.desc}
+                      </p>
+                    </div>
 
+                    {/* 4 Capabilities (2x2 Grid) */}
                     <div>
-                      <h4 className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-400 mb-1.5 flex items-center gap-1.5">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                        Key Engineering Breakthroughs Delivered
+                      <h4 className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                        Key Capabilities Built
                       </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-3">
                         {active.highlights.map((h, i) => (
-                          <div key={i} className="p-2.5 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm lg:text-base text-slate-100 flex items-start gap-2">
-                            <span className="text-cyan-400 font-bold">✔</span>
-                            <span className="font-semibold leading-snug">{h}</span>
+                          <div key={i} className="p-3 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm lg:text-base text-slate-200 flex items-start gap-2.5">
+                            <span className="w-2 h-2 rounded-full bg-cyan-400 mt-1.5 shrink-0 shadow-[0_0_8px_rgba(0,240,255,0.8)]" />
+                            <span className="font-medium leading-snug">{h}</span>
                           </div>
                         ))}
                       </div>
+                    </div>
+
+                    {/* 3 Architecture Specification Boxes */}
+                    <div className="grid grid-cols-3 gap-2.5 sm:gap-4 pt-1">
+                      {active.specs.map((spec, sIdx) => (
+                        <div key={sIdx} className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 text-center">
+                          <div className="text-xl sm:text-2xl lg:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+                            {spec.value}
+                          </div>
+                          <div className="text-[10px] sm:text-xs font-bold text-slate-300 uppercase tracking-wider mt-1">
+                            {spec.label}
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </motion.div>
                 );
@@ -1426,10 +1501,10 @@ export default function App() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 shrink-0 mb-2">
                 <div>
                   <div className="text-xs sm:text-sm lg:text-base font-bold uppercase tracking-wider text-rose-400">
-                    Slide 05 • Risk Governance & Mitigation
+                    Slide 05 • Current Challenges & Solutions
                   </div>
                   <h2 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight">
-                    Challenges & Risk Analysis Matrix
+                    Current Challenges & How We Solve Them
                   </h2>
                 </div>
 
@@ -1455,85 +1530,105 @@ export default function App() {
                 </div>
               </div>
 
-              {/* 4 Risk Selector Tabs */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 shrink-0 mb-2">
-                {RISKS.map((risk, idx) => (
-                  <button
-                    key={risk.id}
-                    onClick={() => setActiveRiskIdx(idx)}
-                    className={`p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer ${
-                      activeRiskIdx === idx
-                        ? 'bg-rose-500/20 border-rose-400 text-rose-300 shadow-lg shadow-rose-500/10'
-                        : 'bg-white/5 border-white/10 text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] sm:text-xs font-mono font-bold uppercase">{risk.category}</span>
-                      <span className={`text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full border ${risk.severityClass}`}>
-                        {risk.severity}
-                      </span>
-                    </div>
-                    <div className="text-xs sm:text-sm lg:text-base font-bold text-white truncate">{risk.title}</div>
-                  </button>
-                ))}
+              {/* 5 Risk Selector Tabs */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 shrink-0 mb-2">
+                {RISKS.map((risk, idx) => {
+                  const Icon = risk.icon;
+                  const isSelected = activeRiskIdx === idx;
+                  return (
+                    <button
+                      key={risk.id}
+                      onClick={() => setActiveRiskIdx(idx)}
+                      className={`p-2.5 sm:p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                        isSelected
+                          ? 'bg-rose-500/20 border-rose-400 text-rose-300 shadow-lg shadow-rose-500/10'
+                          : 'bg-white/5 border-white/10 text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <Icon className="w-4 h-4 text-rose-400 shrink-0" />
+                        <span className={`text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full border ${risk.severityClass}`}>
+                          {risk.severity}
+                        </span>
+                      </div>
+                      <div className="text-xs sm:text-sm lg:text-base font-bold text-white truncate">{risk.title}</div>
+                    </button>
+                  );
+                })}
               </div>
 
-              {/* Active Risk Focused Spotlight Card */}
+              {/* Massive Projector Spotlight Card */}
               {(() => {
-                const RiskIcon = activeRisk.icon;
+                const active = activeRisk;
+                const Icon = active.icon;
                 return (
                   <motion.div
-                    key={activeRisk.id}
+                    key={active.id}
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.98 }}
-                    className={`flex-1 min-h-0 flex flex-col justify-between p-3.5 sm:p-5 lg:p-6 rounded-2xl border backdrop-blur-2xl overflow-hidden ${
+                    className={`flex-1 min-h-0 flex flex-col justify-between p-4 sm:p-6 lg:p-7 rounded-2xl border backdrop-blur-2xl overflow-hidden ${
                       isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200 shadow-xl'
                     }`}
                   >
-                    <div className="flex items-center justify-between gap-3 shrink-0 pb-2.5 border-b border-white/10">
-                      <div className="flex items-center gap-2.5">
-                        <div className="p-2 sm:p-2.5 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30 shrink-0">
-                          <RiskIcon className="w-5 h-5 sm:w-7 sm:h-7" />
+                    {/* Top Header */}
+                    <div className="flex items-center justify-between gap-3 shrink-0 pb-3 border-b border-white/10">
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <div className={`p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r ${active.color} text-white shadow-xl shrink-0`}>
+                          <Icon className="w-6 h-6 sm:w-8 sm:h-8" />
                         </div>
                         <div>
-                          <div className="text-[10px] sm:text-xs text-rose-400 font-bold uppercase tracking-widest">{activeRisk.category} Risk</div>
-                          <h3 className="text-sm sm:text-xl lg:text-2xl font-black text-white">{activeRisk.title}</h3>
+                          <div className="text-[10px] sm:text-xs text-rose-400 font-bold uppercase tracking-widest flex items-center gap-2">
+                            <span>{active.category}</span>
+                            <span className="w-1 h-1 rounded-full bg-rose-400" />
+                            <span>{active.scope}</span>
+                          </div>
+                          <h3 className="text-base sm:text-xl lg:text-2xl font-black text-white mt-0.5 leading-tight">{active.title}</h3>
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2 shrink-0">
-                        <span className={`text-xs sm:text-sm font-bold px-2.5 py-1 rounded-lg border ${activeRisk.severityClass}`}>
-                          {activeRisk.severity}
-                        </span>
-                        <span className="text-xs sm:text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/30">
-                          {activeRisk.status}
-                        </span>
+                      {/* Mitigation Strategy Badge */}
+                      <div className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl bg-rose-500/15 text-rose-300 border border-rose-500/30 text-center shrink-0">
+                        <div className="text-[9px] sm:text-[10px] uppercase font-bold text-rose-400 tracking-wider">Our Solution</div>
+                        <div className="text-sm sm:text-base lg:text-lg font-black text-white">{active.moduleType}</div>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-2.5 sm:gap-4 flex-1 min-h-0 my-1.5">
-                      {/* Blocker Alert Box */}
-                      <div className="p-3 sm:p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 flex flex-col justify-center">
-                        <span className="text-[10px] sm:text-xs font-bold text-rose-400 uppercase tracking-widest block mb-1">Blocker & Impact</span>
-                        <p className="text-xs sm:text-sm lg:text-base text-rose-100 font-medium leading-relaxed">
-                          {activeRisk.blocker}
-                        </p>
-                      </div>
+                    {/* Description Paragraph */}
+                    <div className="p-3.5 sm:p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
+                        {active.desc}
+                      </p>
+                    </div>
 
-                      {/* Mitigation Resolution Box */}
-                      <div className="p-3 sm:p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex flex-col justify-center">
-                        <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest block mb-1">Mitigation Strategy Delivered</span>
-                        <p className="text-xs sm:text-sm lg:text-base text-cyan-100 font-medium leading-relaxed">
-                          {activeRisk.mitigation}
-                        </p>
+                    {/* 4 Safeguards (2x2 Grid) */}
+                    <div>
+                      <h4 className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-rose-400" />
+                        Key Actions We Are Taking
+                      </h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-3">
+                        {active.highlights.map((h, i) => (
+                          <div key={i} className="p-3 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm lg:text-base text-slate-200 flex items-start gap-2.5">
+                            <span className="w-2 h-2 rounded-full bg-rose-400 mt-1.5 shrink-0 shadow-[0_0_8px_rgba(244,63,94,0.8)]" />
+                            <span className="font-medium leading-snug">{h}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
 
-                    {/* Impact Indicators */}
-                    <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-slate-400 font-mono shrink-0">
-                      <span>Operational Impact: <strong className="text-white">{activeRisk.impact}</strong></span>
-                      <span>Occurrence Probability: <strong className="text-white">{activeRisk.probability}</strong></span>
+                    {/* 3 Architecture Safeguard Boxes */}
+                    <div className="grid grid-cols-3 gap-2.5 sm:gap-4 pt-1">
+                      {active.specs.map((spec, sIdx) => (
+                        <div key={sIdx} className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 text-center">
+                          <div className="text-xl sm:text-2xl lg:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-amber-400">
+                            {spec.value}
+                          </div>
+                          <div className="text-[10px] sm:text-xs font-bold text-slate-300 uppercase tracking-wider mt-1">
+                            {spec.label}
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </motion.div>
                 );
@@ -1555,10 +1650,10 @@ export default function App() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 shrink-0 mb-2">
                 <div>
                   <div className="text-xs sm:text-sm lg:text-base font-bold uppercase tracking-wider text-cyan-400">
-                    Slide 06 • Execution Roadmap & Delivery Targets
+                    Slide 06 • Next Steps & Implementation Plan
                   </div>
                   <h2 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight">
-                    Next Steps & Production Roadmap
+                    Next Steps & Project Roadmap
                   </h2>
                 </div>
 
@@ -1584,8 +1679,8 @@ export default function App() {
                 </div>
               </div>
 
-              {/* 4 Phase Selector Tabs */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 shrink-0 mb-2">
+              {/* 3 Phase Selector Tabs */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 shrink-0 mb-2">
                 {ROADMAP_STEPS.map((step, idx) => (
                   <button
                     key={idx}
@@ -1639,13 +1734,13 @@ export default function App() {
 
                       {/* Target Metric Banner */}
                       <div className="px-3.5 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-center shrink-0">
-                        <div className="text-[8px] sm:text-[10px] uppercase font-bold text-emerald-400 tracking-widest">Delivery Metric</div>
+                        <div className="text-[8px] sm:text-[10px] uppercase font-bold text-emerald-400 tracking-widest">Target Goal</div>
                         <div className="text-base sm:text-xl lg:text-2xl font-black">{step.targetMetric}</div>
                       </div>
                     </div>
 
                     <div className="space-y-1.5 sm:space-y-2 flex-1 min-h-0 my-1.5">
-                      <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest block">Core Deliverables & Target Items</span>
+                      <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest block">Key Tasks & Goals</span>
                       {step.deliverables.map((d, dIdx) => (
                         <div key={dIdx} className="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2.5">
                           <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 shrink-0 mt-0.5" />
@@ -1659,7 +1754,7 @@ export default function App() {
             </motion.div>
           )}
 
-          {/* SLIDE 7: CONCLUSION & Q&A (EXPANDED PROJECTOR CARD SHOWCASE) */}
+          {/* SLIDE 7: CONCLUSION & SUMMARY (HIGHLIGHTS FROM ALL SLIDES) */}
           {currentSlide === 7 && (
             <motion.div
               key="slide-7"
@@ -1669,214 +1764,307 @@ export default function App() {
               transition={{ duration: 0.35 }}
               className="w-full h-full max-h-full flex flex-col justify-between overflow-hidden py-0.5"
             >
-              {/* Header & Section Switcher */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 shrink-0 mb-2">
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 shrink-0 mb-1.5 sm:mb-2">
                 <div>
                   <div className="text-xs sm:text-sm lg:text-base font-bold uppercase tracking-wider text-cyan-400">
-                    Slide 07 • Review Takeaways & Floor Discussion
+                    Slide 07 • Executive Review & Summary
                   </div>
                   <h2 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight">
-                    Conclusion & Interactive Q&A
+                    Conclusion & Key Presentation Highlights
                   </h2>
                 </div>
 
-                <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-white/5 border border-white/10 shrink-0 self-start sm:self-auto overflow-x-auto scrollbar-none">
-                  <button
-                    onClick={() => setSlide7Tab('takeaways')}
-                    className={`px-3 sm:px-4 lg:px-5 py-1.5 rounded-xl text-xs sm:text-sm lg:text-base font-bold transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
-                      slide7Tab === 'takeaways'
-                        ? 'bg-cyan-500 text-slate-900 shadow-md shadow-cyan-500/20'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <Award className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
-                    <span>01. Key Takeaways</span>
-                  </button>
-                  <button
-                    onClick={() => setSlide7Tab('faq')}
-                    className={`px-3 sm:px-4 lg:px-5 py-1.5 rounded-xl text-xs sm:text-sm lg:text-base font-bold transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
-                      slide7Tab === 'faq'
-                        ? 'bg-cyan-500 text-slate-900 shadow-md shadow-cyan-500/20'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <HelpCircle className="w-4 h-4 sm:w-4.5 sm:h-4.5 shrink-0" />
-                    <span>02. Floor Q&A</span>
-                  </button>
+                <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
+                  <div className="px-3 py-1.5 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-xs sm:text-sm font-bold flex items-center gap-1.5">
+                    <Sparkles className="w-4 h-4 text-cyan-400" />
+                    <span>Project Takeaways (Slides 01 – 06)</span>
+                  </div>
                 </div>
               </div>
 
-              {/* TAB 1: EXECUTIVE TAKEAWAYS */}
-              {slide7Tab === 'takeaways' && (
-                <motion.div
-                  key="tab-takeaways"
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  className={`flex-1 min-h-0 flex flex-col justify-between p-3.5 sm:p-5 lg:p-6 rounded-2xl border backdrop-blur-2xl overflow-hidden ${
-                    isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200 shadow-xl'
-                  }`}
-                >
-                  <h3 className="text-sm sm:text-lg lg:text-xl font-black text-white flex items-center gap-2 shrink-0 mb-2">
-                    <Award className="w-5 h-5 text-cyan-400" />
-                    Key Transformative Business Outcomes
-                  </h3>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-4 flex-1 min-h-0 mb-2">
-                    <div className="p-3 sm:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-cyan-400/40 transition-all shadow-lg">
+              {/* 6-Card Summary Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5 lg:gap-3 flex-1 min-h-0 mb-1.5 sm:mb-2">
+                {CONCLUSION_POINTS.map((pt, idx) => {
+                  const Icon = pt.icon;
+                  return (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.25, delay: idx * 0.04 }}
+                      className={`p-2.5 sm:p-3.5 lg:p-4 rounded-xl sm:rounded-2xl border flex flex-col justify-between transition-all duration-300 shadow-md ${pt.borderHover} ${
+                        isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200 shadow-lg'
+                      }`}
+                    >
                       <div>
-                        <div className="text-3xl sm:text-5xl lg:text-6xl font-black text-cyan-400 mb-0.5">-45%</div>
-                        <div className="text-xs sm:text-base lg:text-lg font-black text-white mb-1">Average Handling Time Drop</div>
+                        <div className="flex items-center justify-between gap-2 mb-1.5 sm:mb-2">
+                          <span className={`px-2 py-0.5 rounded-md border text-[10px] sm:text-xs font-bold ${pt.badgeColor}`}>
+                            {pt.slideNum} • {pt.label}
+                          </span>
+                          <div className={`p-1.5 rounded-lg bg-white/5 border border-white/10 ${pt.iconColor}`}>
+                            <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                          </div>
+                        </div>
+
+                        <h3 className="text-xs sm:text-sm lg:text-base font-black text-white mb-1">
+                          {pt.title}
+                        </h3>
+
+                        <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-relaxed font-normal">
+                          {pt.desc}
+                        </p>
                       </div>
-                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
-                        Reduces customer hold times from 45s down to under 1.5 seconds via sub-second vectorized directory lookup.
-                      </p>
+
+                      <div className="pt-1.5 sm:pt-2 border-t border-white/10 mt-1.5 sm:mt-2 flex items-center justify-between text-[10px] sm:text-xs text-slate-400">
+                        <span className="font-semibold text-slate-300">Target Area</span>
+                        <span className="font-mono text-cyan-400">1212 Contact Center</span>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Executive Summary Takeaway Footer */}
+              <div className={`p-2 sm:p-2.5 rounded-xl sm:rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-2 shrink-0 ${
+                isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-slate-50 border-slate-200'
+              }`}>
+                <div className="flex items-center gap-2 sm:gap-2.5">
+                  <div className="p-1.5 sm:p-2 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 shrink-0">
+                    <Award className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </div>
+                  <div>
+                    <div className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
+                      <span>Executive Project Takeaway</span>
+                      <span className="hidden sm:inline text-xs text-cyan-400 font-normal">• Sri Lanka Telecom 1212 Center</span>
                     </div>
-
-                    <div className="p-3 sm:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-emerald-400/40 transition-all shadow-lg">
-                      <div>
-                        <div className="text-3xl sm:text-5xl lg:text-6xl font-black text-emerald-400 mb-0.5">100%</div>
-                        <div className="text-xs sm:text-base lg:text-lg font-black text-white mb-1">Call QA Audit Coverage</div>
-                      </div>
-                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
-                        Replaces 2% manual sampling with continuous automated scoring for Sinhala, English, and Tamil greetings & courtesy.
-                      </p>
-                    </div>
-
-                    <div className="p-3 sm:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-blue-400/40 transition-all shadow-lg">
-                      <div>
-                        <div className="text-3xl sm:text-5xl lg:text-6xl font-black text-blue-400 mb-0.5">-80%</div>
-                        <div className="text-xs sm:text-base lg:text-lg font-black text-white mb-1">TT Dispatch Latency</div>
-                      </div>
-                      <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-normal">
-                        Eliminates manual Trouble Ticket drafting and routing errors between MDF and Area Maintenance engineers.
-                      </p>
+                    <div className="text-[11px] sm:text-xs text-slate-300 line-clamp-1">
+                      Smart PEARL replaces manual PDF searches with an intelligent, trilingual copilot tailored for Sri Lanka Telecom 1212 operations.
                     </div>
                   </div>
+                </div>
 
-                  {/* Team Contacts */}
-                  <div className="pt-2 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 shrink-0 text-xs sm:text-sm">
-                    <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest">Leadership & Contacts</span>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <div className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-200 font-medium">
-                        Lead: <strong className="text-white">Gehan & Dev Squad</strong>
+                <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                  <span className="px-2.5 py-1 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-[10px] sm:text-xs font-bold text-cyan-300">
+                    1212 Center Exclusive
+                  </span>
+                  <span className="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-[10px] sm:text-xs font-bold text-emerald-300">
+                    50% Dev • Testing Next
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* SLIDE 8: THANK YOU & Q&A */}
+          {currentSlide === 8 && (
+            <motion.div
+              key="slide-8"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35 }}
+              className="w-full h-full max-h-full flex flex-col justify-between overflow-hidden py-0.5"
+            >
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 shrink-0 mb-1.5 sm:mb-2">
+                <div>
+                  <div className="text-xs sm:text-sm lg:text-base font-bold uppercase tracking-wider text-cyan-400">
+                    Slide 08 • Open Floor Discussion
+                  </div>
+                  <h2 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight">
+                    Thank You! Any Questions?
+                  </h2>
+                </div>
+
+                <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
+                  <div className="px-3 py-1.5 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-xs sm:text-sm font-bold flex items-center gap-1.5">
+                    <MessageSquare className="w-4 h-4 text-cyan-400" />
+                    <span>Open Floor Discussion & Feedback</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Thank You Hero Banner */}
+              <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border shrink-0 flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2 shadow-lg ${
+                isDark ? 'bg-gradient-to-r from-cyan-950/40 via-blue-950/30 to-[#0B1221] border-cyan-500/30' : 'bg-cyan-50 border-cyan-200'
+              }`}>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 shrink-0">
+                    <Sparkles className="w-6 h-6 sm:w-7 sm:h-7" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm sm:text-lg lg:text-xl font-black text-white">
+                      Thank You for Your Time, Guidance & Support!
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300">
+                      We look forward to testing and piloting Smart PEARL with our 1212 Contact Center team.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-xs font-bold text-emerald-300">
+                    50% Dev Complete • Next: Testing & Pilot
+                  </span>
+                </div>
+              </div>
+
+              {/* Main Content Area: 2 Columns (Open Discussion Topics + Project Connect) */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-2.5 sm:gap-3 flex-1 min-h-0 mb-2">
+                {/* Left: 4 Open Floor Discussion Points */}
+                <div className={`md:col-span-8 p-3 sm:p-4 rounded-xl sm:rounded-2xl border flex flex-col justify-between backdrop-blur-2xl shadow-xl overflow-hidden ${
+                  isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200'
+                }`}>
+                  <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2 shrink-0">
+                    <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
+                      <HelpCircle className="w-4 h-4" /> Open Discussion Topics
+                    </span>
+                    <span className="text-[11px] text-slate-400 font-mono">Floor Q&A</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 flex-1 min-h-0">
+                    <div className="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-cyan-400/40 transition-all">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <Mic className="w-4 h-4 text-cyan-400 shrink-0" />
+                          <h4 className="text-xs sm:text-sm font-bold text-white">Speech & Accents</h4>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal">
+                          Audio model training for Sri Lankan English, Singlish slang, and telecommunications vocabulary.
+                        </p>
                       </div>
-                      <div className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-200 font-medium">
-                        Email: <strong className="text-white">smartpearl@slt.lk</strong>
+                      <span className="text-[10px] text-cyan-400 font-semibold mt-1">Trilingual Model Focus</span>
+                    </div>
+
+                    <div className="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-blue-400/40 transition-all">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <Server className="w-4 h-4 text-blue-400 shrink-0" />
+                          <h4 className="text-xs sm:text-sm font-bold text-white">Server Speed & Zero Buffer</h4>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal">
+                          Dedicated server infrastructure to ensure smooth, zero-latency response for all active agents.
+                        </p>
                       </div>
-                      <div className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-200 font-medium">
-                        Portal: <strong className="text-white">internal.slt.lk/smartpearl</strong>
+                      <span className="text-[10px] text-blue-400 font-semibold mt-1">High-Throughput Core</span>
+                    </div>
+
+                    <div className="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-emerald-400/40 transition-all">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                          <h4 className="text-xs sm:text-sm font-bold text-white">Fault Reporting Accuracy</h4>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal">
+                          Checking AI diagnosis recommendations against senior officer standards before filing tickets.
+                        </p>
                       </div>
+                      <span className="text-[10px] text-emerald-400 font-semibold mt-1">Officer Rule Validation</span>
+                    </div>
+
+                    <div className="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-purple-400/40 transition-all">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <Users className="w-4 h-4 text-purple-400 shrink-0" />
+                          <h4 className="text-xs sm:text-sm font-bold text-white">Limited Officer Pilot</h4>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal">
+                          Testing real live calls with a controlled officer group, fixing gaps and polishing iteratively.
+                        </p>
+                      </div>
+                      <span className="text-[10px] text-purple-400 font-semibold mt-1">Small Squad Rollout</span>
                     </div>
                   </div>
-                </motion.div>
-              )}
+                </div>
 
-              {/* TAB 2: INTERACTIVE FLOOR Q&A */}
-              {slide7Tab === 'faq' && (
-                <motion.div
-                  key="tab-faq"
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  className={`flex-1 min-h-0 flex flex-col justify-between p-3.5 sm:p-5 lg:p-6 rounded-2xl border backdrop-blur-2xl overflow-hidden ${
-                    isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200 shadow-xl'
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-2.5 shrink-0 pb-2.5 border-b border-white/10">
-                    <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none">
-                      {FAQS.map((_, fIdx) => (
-                        <button
-                          key={fIdx}
-                          onClick={() => setActiveFaqIdx(fIdx)}
-                          className={`px-3 py-1 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
-                            activeFaqIdx === fIdx
-                              ? 'bg-cyan-500 text-slate-900 shadow-md shadow-cyan-500/20'
-                              : 'bg-white/5 border border-white/10 text-slate-300 hover:text-white'
-                          }`}
-                        >
-                          Question 0{fIdx + 1}
-                        </button>
-                      ))}
-                    </div>
-
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <button
-                        onClick={() => setActiveFaqIdx(prev => (prev > 0 ? prev - 1 : FAQS.length - 1))}
-                        className="p-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
-                        title="Previous Question"
-                      >
-                        <ArrowLeft className="w-4 h-4" />
-                      </button>
-                      <span className="text-xs font-mono font-bold text-slate-400">
-                        {activeFaqIdx + 1}/{FAQS.length}
+                {/* Right: Squad & Contact Card */}
+                <div className={`md:col-span-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl border flex flex-col justify-between backdrop-blur-2xl shadow-xl ${
+                  isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200'
+                }`}>
+                  <div>
+                    <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2.5">
+                      <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
+                        <Users className="w-4 h-4" /> Project Squad & Contacts
                       </span>
-                      <button
-                        onClick={() => setActiveFaqIdx(prev => (prev < FAQS.length - 1 ? prev + 1 : 0))}
-                        className="p-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 cursor-pointer"
-                        title="Next Question"
-                      >
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold">1212 CC</span>
                     </div>
-                  </div>
 
-                  {/* Focused Question & Answer Spotlight */}
-                  <div className="flex-1 min-h-0 flex flex-col justify-center my-1.5 sm:my-2">
-                    <span className="text-[10px] sm:text-xs font-bold text-cyan-400 uppercase tracking-widest block mb-0.5">Featured Review Inquiry</span>
-                    <h3 className="text-xs sm:text-base lg:text-xl font-black text-white mb-1.5">{activeFaq.q}</h3>
-                    <div className="p-3 sm:p-4 lg:p-5 rounded-xl bg-cyan-950/40 border border-cyan-400/30 text-xs sm:text-sm lg:text-base text-cyan-100 font-medium leading-relaxed shadow-lg">
-                      {activeFaq.a}
-                    </div>
-                  </div>
-
-                  {/* Ask Question Box */}
-                  <div className="pt-2 border-t border-white/10 shrink-0">
-                    <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Live Question Submission to Dev Floor</span>
-                    {questionSubmitted ? (
-                      <div className="p-2 sm:p-2.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold flex items-center justify-between">
-                        <span className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 shrink-0" />
-                          Question submitted to Gehan & Dev Squad!
-                        </span>
-                        <button
-                          onClick={() => {
-                            setQuestionSubmitted(false);
-                            setQuestionInput('');
-                          }}
-                          className="text-xs underline font-bold ml-2 shrink-0 cursor-pointer"
-                        >
-                          Send another
-                        </button>
+                    <div className="space-y-2 text-xs">
+                      <div className="p-2 rounded-xl bg-white/5 border border-white/10">
+                        <div className="text-[10px] text-slate-400 uppercase tracking-wider">Lead Developer</div>
+                        <div className="text-sm font-bold text-white mt-0.5">Gehan & Dev Squad</div>
                       </div>
-                    ) : (
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault();
-                          if (questionInput.trim()) setQuestionSubmitted(true);
-                        }}
-                        className="flex gap-2"
-                      >
-                        <input
-                          type="text"
-                          value={questionInput}
-                          onChange={(e) => setQuestionInput(e.target.value)}
-                          placeholder="Type an audience question regarding architecture, security, or deployment..."
-                          className="flex-1 px-3 py-1.5 sm:py-2 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
-                        />
-                        <button
-                          type="submit"
-                          disabled={!questionInput.trim()}
-                          className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-cyan-500 text-slate-900 font-bold text-xs hover:bg-cyan-400 transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center gap-1.5 shrink-0"
-                        >
-                          <Send className="w-3.5 h-3.5" />
-                          <span>Submit</span>
-                        </button>
-                      </form>
-                    )}
+
+                      <div className="p-2 rounded-xl bg-white/5 border border-white/10">
+                        <div className="text-[10px] text-slate-400 uppercase tracking-wider">Contact Email</div>
+                        <div className="text-sm font-bold text-cyan-300 mt-0.5 font-mono">smartpearl@slt.lk</div>
+                      </div>
+
+                      <div className="p-2 rounded-xl bg-white/5 border border-white/10">
+                        <div className="text-[10px] text-slate-400 uppercase tracking-wider">Internal Portal</div>
+                        <div className="text-sm font-bold text-emerald-300 mt-0.5 font-mono">internal.slt.lk/smartpearl</div>
+                      </div>
+                    </div>
                   </div>
-                </motion.div>
-              )}
+
+                  <div className="pt-2 border-t border-white/10 mt-2">
+                    <p className="text-[11px] text-slate-400 leading-relaxed italic">
+                      "Empowering SLT 1212 Contact Center officers with real-time, trilingual intelligence."
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom: Live Question / Feedback Form */}
+              <div className={`p-2 sm:p-2.5 rounded-xl sm:rounded-2xl border shrink-0 ${
+                isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-slate-50 border-slate-200'
+              }`}>
+                {questionSubmitted ? (
+                  <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold flex items-center justify-between">
+                    <span className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 shrink-0" />
+                      Question submitted to Gehan & Dev Squad!
+                    </span>
+                    <button
+                      onClick={() => {
+                        setQuestionSubmitted(false);
+                        setQuestionInput('');
+                      }}
+                      className="text-xs underline font-bold ml-2 shrink-0 cursor-pointer"
+                    >
+                      Send another
+                    </button>
+                  </div>
+                ) : (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      if (questionInput.trim()) setQuestionSubmitted(true);
+                    }}
+                    className="flex items-center gap-2"
+                  >
+                    <span className="text-[11px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider hidden lg:inline shrink-0 pl-1">
+                      Live Audience Question:
+                    </span>
+                    <input
+                      type="text"
+                      value={questionInput}
+                      onChange={(e) => setQuestionInput(e.target.value)}
+                      placeholder="Type a question or feedback regarding architecture, speech models, or the upcoming pilot..."
+                      className="flex-1 px-3 py-1.5 sm:py-2 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
+                    />
+                    <button
+                      type="submit"
+                      disabled={!questionInput.trim()}
+                      className="px-4 py-1.5 sm:py-2 rounded-xl bg-cyan-500 text-slate-900 font-bold text-xs hover:bg-cyan-400 transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center gap-1.5 shrink-0"
+                    >
+                      <Send className="w-3.5 h-3.5" />
+                      <span>Submit</span>
+                    </button>
+                  </form>
+                )}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

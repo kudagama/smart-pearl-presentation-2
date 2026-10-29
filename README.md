@@ -6,8 +6,8 @@ A modern, sleek, interactive, and responsive presentation web application built 
 
 - **7-Slide Progress Review Flow**:
   - **Slide 01**: Title & Introduction with animated 3D-like Glowing AI Robot Core & orbital rings.
-  - **Slide 02**: Project Overview, Pain Point Bottlenecks, AI Solution Architecture, and Key Stakeholders.
-  - **Slide 03**: Progress Summary (100% Planning, 100% Designing, 92% Development, 85% Testing) with workstream drilldowns.
+  - **Slide 02**: Project Overview, Pain Point Bottlenecks, and AI Solution Architecture.
+  - **Slide 03**: Progress Summary (100% Planning, 100% Designing, 50% Development, 0% Testing) with workstream drilldowns.
   - **Slide 04**: Key Achievements (Trilingual Speech Normalizer, Sub-0.5s Retrieval, Deterministic Fault Triage, 100% SLT QA Scoring).
   - **Slide 05**: Challenges & Risk Analysis Matrix with impact indicators and proven mitigations.
   - **Slide 06**: Production Roadmap & Phased Delivery Milestones (50-Agent Field Pilot to Island-wide Scale).
