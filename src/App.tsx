@@ -6,7 +6,7 @@ import {
   Cpu, Maximize, Minimize, RotateCcw, Headphones, Mic,
   Users, Play, Pause,
   Calendar, Award, Server, ArrowRight, ArrowLeft,
-  HelpCircle, Send, Sun, Moon,
+  Sun, Moon,
   ListChecks, Globe, ChevronDown,
   Brain, Shield, MessageSquare, FileText
 } from 'lucide-react';
@@ -447,8 +447,6 @@ export default function App() {
   const [activeRiskIdx, setActiveRiskIdx] = useState<number>(0);
   const [activeRoadmapIdx, setActiveRoadmapIdx] = useState<number>(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [questionInput, setQuestionInput] = useState('');
-  const [questionSubmitted, setQuestionSubmitted] = useState(false);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [touchStartY, setTouchStartY] = useState<number | null>(null);
 
@@ -1856,214 +1854,57 @@ export default function App() {
             </motion.div>
           )}
 
-          {/* SLIDE 8: THANK YOU & Q&A */}
+          {/* SLIDE 8: THANK YOU & ANY QUESTIONS? */}
           {currentSlide === 8 && (
             <motion.div
               key="slide-8"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.35 }}
-              className="w-full h-full max-h-full flex flex-col justify-between overflow-hidden py-0.5"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.4 }}
+              className="w-full h-full max-h-full flex flex-col items-center justify-center overflow-hidden py-4"
             >
-              {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 shrink-0 mb-1.5 sm:mb-2">
-                <div>
-                  <div className="text-xs sm:text-sm lg:text-base font-bold uppercase tracking-wider text-cyan-400">
-                    Slide 08 • Open Floor Discussion
-                  </div>
-                  <h2 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight">
-                    Thank You! Any Questions?
-                  </h2>
-                </div>
-
-                <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
-                  <div className="px-3 py-1.5 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-xs sm:text-sm font-bold flex items-center gap-1.5">
-                    <MessageSquare className="w-4 h-4 text-cyan-400" />
-                    <span>Open Floor Discussion & Feedback</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Thank You Hero Banner */}
-              <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border shrink-0 flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2 shadow-lg ${
-                isDark ? 'bg-gradient-to-r from-cyan-950/40 via-blue-950/30 to-[#0B1221] border-cyan-500/30' : 'bg-cyan-50 border-cyan-200'
+              <div className={`w-full max-w-4xl p-10 sm:p-16 lg:p-20 rounded-3xl border flex flex-col items-center justify-center text-center relative overflow-hidden shadow-2xl backdrop-blur-2xl transition-all ${
+                isDark
+                  ? 'bg-gradient-to-b from-[#0B1221]/90 via-[#070D1A]/95 to-[#030712]/95 border-cyan-500/30'
+                  : 'bg-white border-slate-200 shadow-2xl'
               }`}>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 shrink-0">
-                    <Sparkles className="w-6 h-6 sm:w-7 sm:h-7" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm sm:text-lg lg:text-xl font-black text-white">
-                      Thank You for Your Time, Guidance & Support!
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-300">
-                      We look forward to testing and piloting Smart PEARL with our 1212 Contact Center team.
-                    </p>
-                  </div>
-                </div>
+                {/* Ambient Glows */}
+                <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none" />
+                <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#005696]/20 rounded-full blur-[120px] pointer-events-none" />
 
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-xs font-bold text-emerald-300">
-                    50% Dev Complete • Next: Testing & Pilot
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.1, duration: 0.4 }}
+                  className="p-4 sm:p-5 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 mb-6 sm:mb-8 shadow-lg shadow-cyan-500/10"
+                >
+                  <Sparkles className="w-10 h-10 sm:w-14 sm:h-14 text-cyan-400" />
+                </motion.div>
+
+                <motion.h1
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.4 }}
+                  className={`text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight mb-4 sm:mb-6 ${
+                    isDark ? 'text-white' : 'text-slate-900'
+                  }`}
+                >
+                  Thank You!
+                </motion.h1>
+
+                <motion.div
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                  className="flex items-center gap-3 sm:gap-5"
+                >
+                  <div className="h-0.5 w-10 sm:w-20 bg-gradient-to-r from-transparent to-cyan-400" />
+                  <span className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-cyan-400 tracking-wide uppercase">
+                    Any Questions?
                   </span>
-                </div>
-              </div>
-
-              {/* Main Content Area: 2 Columns (Open Discussion Topics + Project Connect) */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-2.5 sm:gap-3 flex-1 min-h-0 mb-2">
-                {/* Left: 4 Open Floor Discussion Points */}
-                <div className={`md:col-span-8 p-3 sm:p-4 rounded-xl sm:rounded-2xl border flex flex-col justify-between backdrop-blur-2xl shadow-xl overflow-hidden ${
-                  isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200'
-                }`}>
-                  <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2 shrink-0">
-                    <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
-                      <HelpCircle className="w-4 h-4" /> Open Discussion Topics
-                    </span>
-                    <span className="text-[11px] text-slate-400 font-mono">Floor Q&A</span>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 flex-1 min-h-0">
-                    <div className="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-cyan-400/40 transition-all">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <Mic className="w-4 h-4 text-cyan-400 shrink-0" />
-                          <h4 className="text-xs sm:text-sm font-bold text-white">Speech & Accents</h4>
-                        </div>
-                        <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal">
-                          Audio model training for Sri Lankan English, Singlish slang, and telecommunications vocabulary.
-                        </p>
-                      </div>
-                      <span className="text-[10px] text-cyan-400 font-semibold mt-1">Trilingual Model Focus</span>
-                    </div>
-
-                    <div className="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-blue-400/40 transition-all">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <Server className="w-4 h-4 text-blue-400 shrink-0" />
-                          <h4 className="text-xs sm:text-sm font-bold text-white">Server Speed & Zero Buffer</h4>
-                        </div>
-                        <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal">
-                          Dedicated server infrastructure to ensure smooth, zero-latency response for all active agents.
-                        </p>
-                      </div>
-                      <span className="text-[10px] text-blue-400 font-semibold mt-1">High-Throughput Core</span>
-                    </div>
-
-                    <div className="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-emerald-400/40 transition-all">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                          <h4 className="text-xs sm:text-sm font-bold text-white">Fault Reporting Accuracy</h4>
-                        </div>
-                        <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal">
-                          Checking AI diagnosis recommendations against senior officer standards before filing tickets.
-                        </p>
-                      </div>
-                      <span className="text-[10px] text-emerald-400 font-semibold mt-1">Officer Rule Validation</span>
-                    </div>
-
-                    <div className="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-purple-400/40 transition-all">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <Users className="w-4 h-4 text-purple-400 shrink-0" />
-                          <h4 className="text-xs sm:text-sm font-bold text-white">Limited Officer Pilot</h4>
-                        </div>
-                        <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-normal">
-                          Testing real live calls with a controlled officer group, fixing gaps and polishing iteratively.
-                        </p>
-                      </div>
-                      <span className="text-[10px] text-purple-400 font-semibold mt-1">Small Squad Rollout</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right: Squad & Contact Card */}
-                <div className={`md:col-span-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl border flex flex-col justify-between backdrop-blur-2xl shadow-xl ${
-                  isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-white border-slate-200'
-                }`}>
-                  <div>
-                    <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2.5">
-                      <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
-                        <Users className="w-4 h-4" /> Project Squad & Contacts
-                      </span>
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold">1212 CC</span>
-                    </div>
-
-                    <div className="space-y-2 text-xs">
-                      <div className="p-2 rounded-xl bg-white/5 border border-white/10">
-                        <div className="text-[10px] text-slate-400 uppercase tracking-wider">Lead Developer</div>
-                        <div className="text-sm font-bold text-white mt-0.5">Gehan & Dev Squad</div>
-                      </div>
-
-                      <div className="p-2 rounded-xl bg-white/5 border border-white/10">
-                        <div className="text-[10px] text-slate-400 uppercase tracking-wider">Contact Email</div>
-                        <div className="text-sm font-bold text-cyan-300 mt-0.5 font-mono">smartpearl@slt.lk</div>
-                      </div>
-
-                      <div className="p-2 rounded-xl bg-white/5 border border-white/10">
-                        <div className="text-[10px] text-slate-400 uppercase tracking-wider">Internal Portal</div>
-                        <div className="text-sm font-bold text-emerald-300 mt-0.5 font-mono">internal.slt.lk/smartpearl</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-2 border-t border-white/10 mt-2">
-                    <p className="text-[11px] text-slate-400 leading-relaxed italic">
-                      "Empowering SLT 1212 Contact Center officers with real-time, trilingual intelligence."
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom: Live Question / Feedback Form */}
-              <div className={`p-2 sm:p-2.5 rounded-xl sm:rounded-2xl border shrink-0 ${
-                isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-slate-50 border-slate-200'
-              }`}>
-                {questionSubmitted ? (
-                  <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold flex items-center justify-between">
-                    <span className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 shrink-0" />
-                      Question submitted to Gehan & Dev Squad!
-                    </span>
-                    <button
-                      onClick={() => {
-                        setQuestionSubmitted(false);
-                        setQuestionInput('');
-                      }}
-                      className="text-xs underline font-bold ml-2 shrink-0 cursor-pointer"
-                    >
-                      Send another
-                    </button>
-                  </div>
-                ) : (
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      if (questionInput.trim()) setQuestionSubmitted(true);
-                    }}
-                    className="flex items-center gap-2"
-                  >
-                    <span className="text-[11px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider hidden lg:inline shrink-0 pl-1">
-                      Live Audience Question:
-                    </span>
-                    <input
-                      type="text"
-                      value={questionInput}
-                      onChange={(e) => setQuestionInput(e.target.value)}
-                      placeholder="Type a question or feedback regarding architecture, speech models, or the upcoming pilot..."
-                      className="flex-1 px-3 py-1.5 sm:py-2 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
-                    />
-                    <button
-                      type="submit"
-                      disabled={!questionInput.trim()}
-                      className="px-4 py-1.5 sm:py-2 rounded-xl bg-cyan-500 text-slate-900 font-bold text-xs hover:bg-cyan-400 transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center gap-1.5 shrink-0"
-                    >
-                      <Send className="w-3.5 h-3.5" />
-                      <span>Submit</span>
-                    </button>
-                  </form>
-                )}
+                  <div className="h-0.5 w-10 sm:w-20 bg-gradient-to-l from-transparent to-cyan-400" />
+                </motion.div>
               </div>
             </motion.div>
           )}
