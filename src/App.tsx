@@ -1782,7 +1782,7 @@ export default function App() {
               </div>
 
               {/* 6-Card Summary Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5 lg:gap-3 flex-1 min-h-0 mb-1.5 sm:mb-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3 lg:gap-4 flex-1 min-h-0 mb-2">
                 {CONCLUSION_POINTS.map((pt, idx) => {
                   const Icon = pt.icon;
                   return (
@@ -1791,32 +1791,27 @@ export default function App() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.25, delay: idx * 0.04 }}
-                      className={`p-2.5 sm:p-3.5 lg:p-4 rounded-xl sm:rounded-2xl border flex flex-col justify-between transition-all duration-300 shadow-md ${pt.borderHover} ${
+                      className={`p-3.5 sm:p-4 lg:p-5 rounded-2xl border flex flex-col justify-between transition-all duration-300 shadow-md ${pt.borderHover} ${
                         isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200 shadow-lg'
                       }`}
                     >
                       <div>
-                        <div className="flex items-center justify-between gap-2 mb-1.5 sm:mb-2">
-                          <span className={`px-2 py-0.5 rounded-md border text-[10px] sm:text-xs font-bold ${pt.badgeColor}`}>
+                        <div className="flex items-center justify-between gap-2 mb-2 sm:mb-2.5">
+                          <span className={`px-2.5 py-1 rounded-lg border text-xs sm:text-sm font-bold ${pt.badgeColor}`}>
                             {pt.slideNum} • {pt.label}
                           </span>
-                          <div className={`p-1.5 rounded-lg bg-white/5 border border-white/10 ${pt.iconColor}`}>
-                            <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                          <div className={`p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 ${pt.iconColor}`}>
+                            <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                           </div>
                         </div>
 
-                        <h3 className="text-xs sm:text-sm lg:text-base font-black text-white mb-1">
+                        <h3 className="text-base sm:text-lg lg:text-xl font-black text-white mb-2 leading-snug">
                           {pt.title}
                         </h3>
 
-                        <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-relaxed font-normal">
+                        <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed font-medium">
                           {pt.desc}
                         </p>
-                      </div>
-
-                      <div className="pt-1.5 sm:pt-2 border-t border-white/10 mt-1.5 sm:mt-2 flex items-center justify-between text-[10px] sm:text-xs text-slate-400">
-                        <span className="font-semibold text-slate-300">Target Area</span>
-                        <span className="font-mono text-cyan-400">1212 Contact Center</span>
                       </div>
                     </motion.div>
                   );
@@ -1824,29 +1819,29 @@ export default function App() {
               </div>
 
               {/* Executive Summary Takeaway Footer */}
-              <div className={`p-2 sm:p-2.5 rounded-xl sm:rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-2 shrink-0 ${
+              <div className={`p-2.5 sm:p-3.5 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 shrink-0 ${
                 isDark ? 'bg-[#0B1221]/90 border-white/10' : 'bg-slate-50 border-slate-200'
               }`}>
-                <div className="flex items-center gap-2 sm:gap-2.5">
-                  <div className="p-1.5 sm:p-2 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 shrink-0">
-                    <Award className="w-4 h-4 sm:w-5 sm:h-5" />
+                <div className="flex items-center gap-2.5 sm:gap-3">
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 shrink-0">
+                    <Award className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div>
-                    <div className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
+                    <div className="text-sm sm:text-base lg:text-lg font-black text-white flex items-center gap-2">
                       <span>Executive Project Takeaway</span>
-                      <span className="hidden sm:inline text-xs text-cyan-400 font-normal">• Sri Lanka Telecom 1212 Center</span>
+                      <span className="hidden sm:inline text-xs sm:text-sm text-cyan-400 font-semibold">• Sri Lanka Telecom 1212 Center</span>
                     </div>
-                    <div className="text-[11px] sm:text-xs text-slate-300 line-clamp-1">
+                    <div className="text-xs sm:text-sm lg:text-base text-slate-200 font-normal line-clamp-1">
                       Smart PEARL replaces manual PDF searches with an intelligent, trilingual copilot tailored for Sri Lanka Telecom 1212 operations.
                     </div>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-                  <span className="px-2.5 py-1 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-[10px] sm:text-xs font-bold text-cyan-300">
+                  <span className="px-3 py-1.5 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-xs sm:text-sm font-bold text-cyan-300">
                     1212 Center Exclusive
                   </span>
-                  <span className="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-[10px] sm:text-xs font-bold text-emerald-300">
+                  <span className="px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-xs sm:text-sm font-bold text-emerald-300">
                     50% Dev • Testing Next
                   </span>
                 </div>
